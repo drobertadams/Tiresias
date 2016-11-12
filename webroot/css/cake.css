@@ -19,6 +19,11 @@ a {
     color: #15848F;
 }
 
+footer p {
+  text-align: center;
+  font-size: 10px;
+}
+
 header {
     background-color: #D33C44;
     color: #ffffff;

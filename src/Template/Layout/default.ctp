@@ -51,6 +51,8 @@ $cakeDescription = 'Tiresias';
         <?= $this->fetch('content') ?>
     </div>
     <footer>
+      <p>GVSU Department of Classics, GVSU School of Computing and Information Systems,<br/>
+        Society for Classical Studies Committee for the Translation of Classical Authors</p>
     </footer>
 </body>
 </html>
