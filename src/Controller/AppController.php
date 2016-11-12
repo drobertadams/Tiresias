@@ -43,6 +43,9 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+
+        $this->set('title', 'Test-title');
+
     }
 
     /**
