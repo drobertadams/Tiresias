@@ -373,6 +373,7 @@ pre {
 
 .top-bar.expanded .title-area {
     background: #01545b;
+    width: 15%;
 }
 
 .top-bar.expanded, .top-bar,.top-bar-section ul li,.top-bar-section li:not(.has-form) a:not(.button) {
@@ -394,6 +395,7 @@ pre {
 
 #actions-sidebar {
     background: #fafafa;
+    width: 15%;
 }
 
 .index table {
@@ -528,6 +530,7 @@ div.message.hidden {
 
 .content {
     padding: 2rem;
+    width: 85%;
 }
 
 /* Use 'one true layout' methods to get equal height columns */
