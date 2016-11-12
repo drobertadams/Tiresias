@@ -30,6 +30,8 @@
                 <th scope="col"><?= $this->Paginator->sort('is_prose') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('media_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created_on') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created_by_name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created_by_email') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -47,6 +49,8 @@
                 <td><?= h($submission->is_prose) ?></td>
                 <td><?= $submission->has('media') ? $this->Html->link($submission->media->name, ['controller' => 'Media', 'action' => 'view', $submission->media->id]) : '' ?></td>
                 <td><?= h($submission->created_on) ?></td>
+                <td><?= h($submission->created_by_name) ?></td>
+                <td><?= h($submission->created_by_email) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $submission->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $submission->id]) ?>

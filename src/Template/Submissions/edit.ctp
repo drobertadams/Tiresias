@@ -36,6 +36,8 @@
             echo $this->Form->input('media_id', ['options' => $media]);
             echo $this->Form->input('notes');
             echo $this->Form->input('created_on');
+            echo $this->Form->input('created_by_name');
+            echo $this->Form->input('created_by_email');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

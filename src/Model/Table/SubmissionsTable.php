@@ -96,6 +96,14 @@ class SubmissionsTable extends Table
             ->requirePresence('created_on', 'create')
             ->notEmpty('created_on');
 
+        $validator
+            ->requirePresence('created_by_name', 'create')
+            ->notEmpty('created_by_name');
+
+        $validator
+            ->requirePresence('created_by_email', 'create')
+            ->notEmpty('created_by_email');
+
         return $validator;
     }
 

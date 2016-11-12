@@ -18,6 +18,8 @@ use Cake\ORM\Entity;
  * @property int $media_id
  * @property string $notes
  * @property \Cake\I18n\Time $created_on
+ * @property string $created_by_name
+ * @property string $created_by_email
  *
  * @property \App\Model\Entity\Work $work
  * @property \App\Model\Entity\Author $author

@@ -53,6 +53,14 @@
             <td><?= $submission->has('media') ? $this->Html->link($submission->media->name, ['controller' => 'Media', 'action' => 'view', $submission->media->id]) : '' ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Created By Name') ?></th>
+            <td><?= h($submission->created_by_name) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Created By Email') ?></th>
+            <td><?= h($submission->created_by_email) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($submission->id) ?></td>
         </tr>

@@ -25,7 +25,6 @@ class SubmissionsController extends AppController
 
         $this->set(compact('submissions'));
         $this->set('_serialize', ['submissions']);
-        $this->set('title', 'Submissions');
     }
 
     /**
