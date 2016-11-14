@@ -3,10 +3,6 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Author'), ['action' => 'edit', $author->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Author'), ['action' => 'delete', $author->id], ['confirm' => __('Are you sure you want to delete # {0}?', $author->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Authors'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Author'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Submissions'), ['controller' => 'Submissions', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Submission'), ['controller' => 'Submissions', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="authors view large-9 medium-8 columns content">

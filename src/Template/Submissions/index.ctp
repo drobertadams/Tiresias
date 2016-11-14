@@ -2,16 +2,11 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Submission'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Works'), ['controller' => 'Works', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Work'), ['controller' => 'Works', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Authors'), ['controller' => 'Authors', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Author'), ['controller' => 'Authors', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Translators'), ['controller' => 'Translators', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Translator'), ['controller' => 'Translators', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Languages'), ['controller' => 'Languages', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Language'), ['controller' => 'Languages', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Media'), ['controller' => 'Media', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Media'), ['controller' => 'Media', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Authors'), ['controller' => 'Authors', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Languages'), ['controller' => 'Languages', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Media'), ['controller' => 'Media', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Translators'), ['controller' => 'Translators', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Works'), ['controller' => 'Works', 'action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="submissions index large-9 medium-8 columns content">

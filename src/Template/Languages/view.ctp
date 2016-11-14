@@ -5,8 +5,6 @@
         <li><?= $this->Form->postLink(__('Delete Language'), ['action' => 'delete', $language->id], ['confirm' => __('Are you sure you want to delete # {0}?', $language->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Languages'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Language'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Submissions'), ['controller' => 'Submissions', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Submission'), ['controller' => 'Submissions', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="languages view large-9 medium-8 columns content">

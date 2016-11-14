@@ -5,8 +5,6 @@
         <li><?= $this->Form->postLink(__('Delete Work'), ['action' => 'delete', $work->id], ['confirm' => __('Are you sure you want to delete # {0}?', $work->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Works'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Work'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Submissions'), ['controller' => 'Submissions', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Submission'), ['controller' => 'Submissions', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="works view large-9 medium-8 columns content">

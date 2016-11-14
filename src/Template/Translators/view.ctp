@@ -5,8 +5,6 @@
         <li><?= $this->Form->postLink(__('Delete Translator'), ['action' => 'delete', $translator->id], ['confirm' => __('Are you sure you want to delete # {0}?', $translator->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Translators'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Translator'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Submissions'), ['controller' => 'Submissions', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Submission'), ['controller' => 'Submissions', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="translators view large-9 medium-8 columns content">
