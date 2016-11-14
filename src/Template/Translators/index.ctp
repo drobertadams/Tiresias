@@ -9,7 +9,6 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created_on') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -18,7 +17,6 @@
         <tbody>
             <?php foreach ($translators as $translator): ?>
             <tr>
-                <td><?= $this->Number->format($translator->id) ?></td>
                 <td><?= h($translator->name) ?></td>
                 <td><?= h($translator->created_on) ?></td>
                 <td class="actions">

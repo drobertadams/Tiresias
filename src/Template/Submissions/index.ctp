@@ -14,7 +14,6 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('work_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('author_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('isbn') ?></th>
@@ -25,15 +24,12 @@
                 <th scope="col"><?= $this->Paginator->sort('is_prose') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('media_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created_on') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created_by_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created_by_email') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($submissions as $submission): ?>
             <tr>
-                <td><?= $this->Number->format($submission->id) ?></td>
                 <td><?= $submission->has('work') ? $this->Html->link($submission->work->title, ['controller' => 'Works', 'action' => 'view', $submission->work->id]) : '' ?></td>
                 <td><?= $submission->has('author') ? $this->Html->link($submission->author->name, ['controller' => 'Authors', 'action' => 'view', $submission->author->id]) : '' ?></td>
                 <td><?= h($submission->isbn) ?></td>
@@ -44,8 +40,6 @@
                 <td><?= h($submission->is_prose) ?></td>
                 <td><?= $submission->has('media') ? $this->Html->link($submission->media->name, ['controller' => 'Media', 'action' => 'view', $submission->media->id]) : '' ?></td>
                 <td><?= h($submission->created_on) ?></td>
-                <td><?= h($submission->created_by_name) ?></td>
-                <td><?= h($submission->created_by_email) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $submission->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $submission->id]) ?>
