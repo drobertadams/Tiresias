@@ -37,13 +37,15 @@ endif;
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
 </head>
+
 <body class="home">
 
     <header>
-        <div class="header-image">
-            <h1>Tiresias: Supporting Translations of Classical Works</h1>
-        </div>
+      <div class="header-image">
+        <h1>Tiresias: Supporting Translations of Classical Works</h1>
+      </div>
     </header>
+
     <div id="content">
 
       <div class="columns large-12 checks">
