@@ -13,7 +13,6 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'Tiresias';
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +20,7 @@ $cakeDescription = 'Tiresias';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
+        Tiresias:
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
@@ -37,7 +36,7 @@ $cakeDescription = 'Tiresias';
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
+                <h1><a href="/submissions">Tiresias</a></h1>
             </li>
         </ul>
         <div class="top-bar-section">
