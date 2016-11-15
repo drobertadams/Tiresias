@@ -19,7 +19,7 @@ class SubmissionsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Works', 'Authors', 'Translators', 'Languages', 'Media']
+            'contain' => ['Works', 'Authors', 'Translators', 'Languages', 'Media', 'Collections']
         ];
         $submissions = $this->paginate($this->Submissions);
 
@@ -37,7 +37,7 @@ class SubmissionsController extends AppController
     public function view($id = null)
     {
         $submission = $this->Submissions->get($id, [
-            'contain' => ['Works', 'Authors', 'Translators', 'Languages', 'Media']
+            'contain' => ['Works', 'Authors', 'Translators', 'Languages', 'Media', 'Collections']
         ]);
 
         $this->set('submission', $submission);
@@ -67,7 +67,8 @@ class SubmissionsController extends AppController
         $translators = $this->Submissions->Translators->find('list', ['limit' => 200]);
         $languages = $this->Submissions->Languages->find('list', ['limit' => 200]);
         $media = $this->Submissions->Media->find('list', ['limit' => 200]);
-        $this->set(compact('submission', 'works', 'authors', 'translators', 'languages', 'media'));
+        $collections = $this->Submissions->Collections->find('list', ['limit' => 200]);
+        $this->set(compact('submission', 'works', 'authors', 'translators', 'languages', 'media', 'collections'));
         $this->set('_serialize', ['submission']);
     }
 
@@ -98,7 +99,8 @@ class SubmissionsController extends AppController
         $translators = $this->Submissions->Translators->find('list', ['limit' => 200]);
         $languages = $this->Submissions->Languages->find('list', ['limit' => 200]);
         $media = $this->Submissions->Media->find('list', ['limit' => 200]);
-        $this->set(compact('submission', 'works', 'authors', 'translators', 'languages', 'media'));
+        $collections = $this->Submissions->Collections->find('list', ['limit' => 200]);
+        $this->set(compact('submission', 'works', 'authors', 'translators', 'languages', 'media', 'collections'));
         $this->set('_serialize', ['submission']);
     }
 

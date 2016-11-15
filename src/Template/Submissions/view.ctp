@@ -3,8 +3,7 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Submission'), ['action' => 'edit', $submission->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Submission'), ['action' => 'delete', $submission->id], ['confirm' => __('Are you sure you want to delete # {0}?', $submission->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Submissions'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Submission'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('Submissions'), ['action' => 'index']) ?> </li>
     </ul>
 </nav>
 <div class="submissions view large-9 medium-8 columns content">
@@ -41,6 +40,10 @@
         <tr>
             <th scope="row"><?= __('Media') ?></th>
             <td><?= $submission->has('media') ? $this->Html->link($submission->media->name, ['controller' => 'Media', 'action' => 'view', $submission->media->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Collection') ?></th>
+            <td><?= $submission->has('collection') ? $this->Html->link($submission->collection->name, ['controller' => 'Collections', 'action' => 'view', $submission->collection->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created By Name') ?></th>

@@ -14,6 +14,7 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Translators
  * @property \Cake\ORM\Association\BelongsTo $Languages
  * @property \Cake\ORM\Association\BelongsTo $Media
+ * @property \Cake\ORM\Association\BelongsTo $Collections
  *
  * @method \App\Model\Entity\Submission get($primaryKey, $options = [])
  * @method \App\Model\Entity\Submission newEntity($data = null, array $options = [])
@@ -59,6 +60,9 @@ class SubmissionsTable extends Table
         $this->belongsTo('Media', [
             'foreignKey' => 'media_id',
             'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Collections', [
+            'foreignKey' => 'collection_id'
         ]);
     }
 
@@ -121,6 +125,7 @@ class SubmissionsTable extends Table
         $rules->add($rules->existsIn(['translator_id'], 'Translators'));
         $rules->add($rules->existsIn(['language_id'], 'Languages'));
         $rules->add($rules->existsIn(['media_id'], 'Media'));
+        $rules->add($rules->existsIn(['collection_id'], 'Collections'));
 
         return $rules;
     }

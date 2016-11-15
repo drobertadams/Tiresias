@@ -16,6 +16,7 @@ use Cake\ORM\Entity;
  * @property int $language_id
  * @property bool $is_prose
  * @property int $media_id
+ * @property int $collection_id
  * @property string $notes
  * @property \Cake\I18n\Time $created_on
  * @property string $created_by_name

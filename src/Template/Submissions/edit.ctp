@@ -7,8 +7,8 @@
                 ['confirm' => __('Are you sure you want to delete # {0}?', $submission->id)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Submissions'), ['action' => 'index']) ?></li>
-    </ul>
+            <li><?= $this->Html->link(__('Submissions'), ['action' => 'index']) ?> </li>
+  </ul>
 </nav>
 <div class="submissions form large-9 medium-8 columns content">
     <?= $this->Form->create($submission) ?>
@@ -24,6 +24,7 @@
             echo $this->Form->input('language_id', ['options' => $languages]);
             echo $this->Form->input('is_prose');
             echo $this->Form->input('media_id', ['options' => $media]);
+            echo $this->Form->input('collection_id', ['options' => $collections, 'empty' => true]);
             echo $this->Form->input('notes');
             echo $this->Form->input('created_on');
             echo $this->Form->input('created_by_name');
