@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Search\Manager;
 
 /**
  * Submissions Model
@@ -37,6 +38,9 @@ class SubmissionsTable extends Table
     {
         parent::initialize($config);
 
+        // Add search behaviour to your table
+        $this->addBehavior('Search.Search');
+
         $this->table('submissions');
         $this->displayField('id');
         $this->primaryKey('id');
@@ -64,6 +68,27 @@ class SubmissionsTable extends Table
         $this->belongsTo('Collections', [
             'foreignKey' => 'collection_id'
         ]);
+
+        // Setup search filter using search manager
+        $this->searchManager()
+           ->value('id')
+           // Here we will alias the 'q' query param to search the `Articles.title`
+           // field and the `Articles.content` field, using a LIKE match, with `%`
+           // both before and after.
+           ->add('q', 'Search.Like', [
+               'before' => true,
+               'after' => true,
+               'fieldMode' => 'OR',
+               'comparison' => 'LIKE',
+               'wildcardAny' => '*',
+               'wildcardOne' => '?',
+               'field' => ['works.title', 'authors.name']
+           ]);
+        //  ->add('foo', 'Search.Callback', [
+        //      'callback' => function ($query, $args, $filter) {
+        //          // Modify $query as required
+        //      }
+        //  ]);
     }
 
     /**
