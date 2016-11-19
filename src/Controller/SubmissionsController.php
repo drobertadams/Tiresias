@@ -11,6 +11,16 @@ use App\Controller\AppController;
 class SubmissionsController extends AppController
 {
 
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('Search.Prg', [
+            // This is default config. You can modify "actions" as needed to make
+            // the PRG component work only for specified methods.
+            'actions' => ['index', 'lookup']
+        ]);
+    }
+
     /**
      * Index method
      *
@@ -21,7 +31,16 @@ class SubmissionsController extends AppController
         $this->paginate = [
             'contain' => ['Works', 'Authors', 'Translators', 'Languages', 'Media', 'Collections']
         ];
-        $submissions = $this->paginate($this->Submissions);
+
+        $query = $this->Submissions
+          // Use the plugins 'search' custom finder and pass in the
+          // processed query params
+          ->find('search', ['search' => $this->request->query]);
+          // You can add extra things to the query if you need to
+          //->contain(['Comments'])
+          //->where(['title IS NOT' => null]);
+
+        $submissions = $this->paginate($query);
 
         $this->set(compact('submissions'));
         $this->set('_serialize', ['submissions']);
