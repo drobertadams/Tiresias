@@ -20,6 +20,7 @@
             echo $this->Form->input('isbn');
             echo $this->Form->input('oclc');
             echo $this->Form->input('edition');
+            echo $this->Form->input('publication_year');
             echo $this->Form->input('translator_id', ['options' => $translators]);
             echo $this->Form->input('language_id', ['options' => $languages]);
             echo $this->Form->input('is_prose');

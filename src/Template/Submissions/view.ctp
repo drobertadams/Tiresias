@@ -30,6 +30,10 @@
             <td><?= h($submission->edition) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Publication Year') ?></th>
+            <td><?= h($submission->publication_year) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Translator') ?></th>
             <td><?= $submission->has('translator') ? $this->Html->link($submission->translator->name, ['controller' => 'Translators', 'action' => 'view', $submission->translator->id]) : '' ?></td>
         </tr>

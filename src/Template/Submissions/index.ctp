@@ -20,6 +20,7 @@
                 <th scope="col"><?= $this->Paginator->sort('author_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('translator_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('edition') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('publication_year') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('isbn') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('oclc') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('language_id') ?></th>
@@ -38,6 +39,7 @@
                 <td><?= $submission->has('author') ? $this->Html->link($submission->author->name, ['controller' => 'Authors', 'action' => 'view', $submission->author->id]) : '' ?></td>
                 <td><?= $submission->has('translator') ? $this->Html->link($submission->translator->name, ['controller' => 'Translators', 'action' => 'view', $submission->translator->id]) : '' ?></td>
                 <td><?= h($submission->edition) ?></td>
+                <td><?= h($submission->publication_year) ?></td>
                 <td><?= h($submission->isbn) ?></td>
                 <td><?= h($submission->oclc) ?></td>
                 <td><?= $submission->has('language') ? $this->Html->link($submission->language->name, ['controller' => 'Languages', 'action' => 'view', $submission->language->id]) : '' ?></td>

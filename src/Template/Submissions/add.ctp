@@ -19,6 +19,7 @@
             echo $this->Form->input('is_prose');
             echo $this->Form->input('is_poetry');
             echo $this->Form->input('media_id', ['options' => $media]);
+            echo $this->Form->input('publication_year');
             echo $this->Form->input('collection_id', ['options' => $collections, 'empty' => true]);
             echo $this->Form->input('notes');
             echo $this->Form->input('created_on');

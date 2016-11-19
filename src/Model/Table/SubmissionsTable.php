@@ -113,6 +113,13 @@ class SubmissionsTable extends Table
             ->allowEmpty('edition');
 
         $validator
+          ->allowEmpty('publication_year')
+          ->add('publication_year', 'length',
+            ['rule' => ['lengthBetween', 4, 4],
+            'message'=>'Please enter a four digit year.']);
+
+
+        $validator
             ->boolean('is_prose')
             ->requirePresence('is_prose', 'create')
             ->notEmpty('is_prose');
