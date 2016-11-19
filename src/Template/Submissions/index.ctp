@@ -24,6 +24,7 @@
                 <th scope="col"><?= $this->Paginator->sort('oclc') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('language_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('is_prose') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('is_poetry') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('media_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('collection_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -41,6 +42,7 @@
                 <td><?= h($submission->oclc) ?></td>
                 <td><?= $submission->has('language') ? $this->Html->link($submission->language->name, ['controller' => 'Languages', 'action' => 'view', $submission->language->id]) : '' ?></td>
                 <td><?= h($submission->is_prose) ?></td>
+                <td><?= h($submission->is_poetry) ?></td>
                 <td><?= $submission->has('media') ? $this->Html->link($submission->media->name, ['controller' => 'Media', 'action' => 'view', $submission->media->id]) : '' ?></td>
                 <td><?= $submission->has('collection') ? $this->Html->link($submission->collection->name, ['controller' => 'Collections', 'action' => 'view', $submission->collection->id]) : '' ?></td>
                 <td class="actions">

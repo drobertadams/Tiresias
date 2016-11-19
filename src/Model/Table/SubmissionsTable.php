@@ -118,6 +118,11 @@ class SubmissionsTable extends Table
             ->notEmpty('is_prose');
 
         $validator
+            ->boolean('is_poetry')
+            ->requirePresence('is_poetry', 'create')
+            ->notEmpty('is_poetry');
+
+        $validator
             ->allowEmpty('notes');
 
         $validator

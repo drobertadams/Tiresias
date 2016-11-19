@@ -65,6 +65,10 @@
             <th scope="row"><?= __('Is Prose') ?></th>
             <td><?= $submission->is_prose ? __('Yes') : __('No'); ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?= __('Is Poetry') ?></th>
+            <td><?= $submission->is_poetry ? __('Yes') : __('No'); ?></td>
+        </tr>
     </table>
     <div class="row">
         <h4><?= __('Notes') ?></h4>

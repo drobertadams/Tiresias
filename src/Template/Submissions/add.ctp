@@ -17,6 +17,7 @@
             echo $this->Form->input('translator_id', ['options' => $translators]);
             echo $this->Form->input('language_id', ['options' => $languages]);
             echo $this->Form->input('is_prose');
+            echo $this->Form->input('is_poetry');
             echo $this->Form->input('media_id', ['options' => $media]);
             echo $this->Form->input('collection_id', ['options' => $collections, 'empty' => true]);
             echo $this->Form->input('notes');
