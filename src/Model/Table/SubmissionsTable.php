@@ -72,17 +72,47 @@ class SubmissionsTable extends Table
         // Setup search filter using search manager
         $this->searchManager()
            ->value('id')
-           // Here we will alias the 'q' query param to search the `Articles.title`
-           // field and the `Articles.content` field, using a LIKE match, with `%`
-           // both before and after.
-           ->add('q', 'Search.Like', [
+           ->add('title', 'Search.Like', [
                'before' => true,
                'after' => true,
                'fieldMode' => 'OR',
                'comparison' => 'LIKE',
                'wildcardAny' => '*',
                'wildcardOne' => '?',
-               'field' => ['works.title', 'authors.name']
+               'field' => ['works.title']
+           ])
+           ->add('author', 'Search.Like', [
+               'before' => true,
+               'after' => true,
+               'fieldMode' => 'OR',
+               'comparison' => 'LIKE',
+               'wildcardAny' => '*',
+               'wildcardOne' => '?',
+               'field' => ['authors.name']
+           ])
+           ->add('translator', 'Search.Like', [
+               'before' => true,
+               'after' => true,
+               'fieldMode' => 'OR',
+               'comparison' => 'LIKE',
+               'wildcardAny' => '*',
+               'wildcardOne' => '?',
+               'field' => ['translators.name']
+           ])
+           ->add('language', 'Search.Like', [
+               'before' => true,
+               'after' => true,
+               'fieldMode' => 'OR',
+               'comparison' => 'LIKE',
+               'wildcardAny' => '*',
+               'wildcardOne' => '?',
+               'field' => ['languages.name']
+           ])
+           ->add('is_prose', 'Search.Compare', [
+              'operator' >= '>='
+           ])
+           ->add('is_poetry', 'Search.Compare', [
+              'operator' >= '>='
            ]);
         //  ->add('foo', 'Search.Callback', [
         //      'callback' => function ($query, $args, $filter) {

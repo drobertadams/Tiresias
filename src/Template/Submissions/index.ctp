@@ -67,10 +67,17 @@
 
     <?php
     echo $this->Form->create();
-        // You'll need to populate $authors in the template from your controller
         //echo $this->Form->input('id');
         // Match the search param in your table configuration
-        echo $this->Form->input('q', ['label' => 'Search']);
+        echo $this->Form->input('title', ['label' => 'Work']);
+        echo $this->Form->input('author', ['label' => 'Author']);
+        echo $this->Form->input('translator', ['label' => 'Translator']);
+        echo $this->Form->input('language', ['label' => 'Language']);
+        echo $this->Form->checkbox('is_prose', ['label' => 'Prose?']);
+        echo $this->Form->label('Prose?');
+        echo $this->Form->checkbox('is_poetry', ['label' => 'Poetry?']);
+        echo $this->Form->label('Poetry?');
+        echo $this->Form->label(''); // force newline before submit button
         echo $this->Form->button('Filter', ['type' => 'submit']);
         echo $this->Html->link('Reset', ['action' => 'index']);
         echo $this->Form->end();
