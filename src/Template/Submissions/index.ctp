@@ -77,6 +77,9 @@
         echo $this->Form->label('Prose?');
         echo $this->Form->checkbox('is_poetry', ['label' => 'Poetry?']);
         echo $this->Form->label('Poetry?');
+        echo $this->Form->input('from_date', ['label' => 'From Date']);
+        echo $this->Form->input('to_date', ['label' => 'To Date']);
+
         echo $this->Form->label(''); // force newline before submit button
         echo $this->Form->button('Filter', ['type' => 'submit']);
         echo $this->Html->link('Reset', ['action' => 'index']);

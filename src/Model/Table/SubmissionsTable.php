@@ -109,10 +109,18 @@ class SubmissionsTable extends Table
                'field' => ['languages.name']
            ])
            ->add('is_prose', 'Search.Compare', [
-              'operator' >= '>='
+              'operator' => '>='
            ])
            ->add('is_poetry', 'Search.Compare', [
-              'operator' >= '>='
+              'operator' => '>='
+           ])
+           ->add('from_date', 'Search.Compare', [
+              'operator' => '>=',
+               'field' => ['publication_year']
+           ])
+           ->add('to_date', 'Search.Compare', [
+              'operator' => '<=',
+               'field' => ['publication_year']
            ]);
         //  ->add('foo', 'Search.Callback', [
         //      'callback' => function ($query, $args, $filter) {
