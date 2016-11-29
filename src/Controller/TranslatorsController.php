@@ -34,7 +34,14 @@ class TranslatorsController extends AppController
     public function view($id = null)
     {
         $translator = $this->Translators->get($id, [
-            'contain' => ['Submissions']
+          'contain' => [
+            'Submissions.Authors',
+            'Submissions.Collections',
+            'Submissions.Languages',
+            'Submissions.Media',
+            'Submissions.Translators',
+            'Submissions.Works',
+          ]
         ]);
 
         $this->set('translator', $translator);

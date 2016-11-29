@@ -29,38 +29,31 @@
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Work Id') ?></th>
-                <th scope="col"><?= __('Author Id') ?></th>
+                <th scope="col"><?= __('Work') ?></th>
+                <th scope="col"><?= __('Author') ?></th>
                 <th scope="col"><?= __('Isbn') ?></th>
                 <th scope="col"><?= __('Oclc') ?></th>
                 <th scope="col"><?= __('Edition') ?></th>
-                <th scope="col"><?= __('Translator Id') ?></th>
-                <th scope="col"><?= __('Language Id') ?></th>
-                <th scope="col"><?= __('Is Prose') ?></th>
-                <th scope="col"><?= __('Media Id') ?></th>
-                <th scope="col"><?= __('Notes') ?></th>
-                <th scope="col"><?= __('Created On') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= __('Translator') ?></th>
+                <th scope="col"><?= __('Language') ?></th>
+                <th scope="col"><?= __('Media') ?></th>
             </tr>
             <?php foreach ($media->submissions as $submissions): ?>
             <tr>
-                <td><?= h($submissions->id) ?></td>
-                <td><?= h($submissions->work_id) ?></td>
-                <td><?= h($submissions->author_id) ?></td>
-                <td><?= h($submissions->isbn) ?></td>
+                <td><?= $this->Html->link($submissions->id,
+                ['controller' => 'Submissions', 'action' => 'view', $submissions->id]) ?></td>
+                <td><?= $this->Html->link($submissions->work->title,
+                  ['controller' => 'Works', 'action' => 'view', $submissions->work->id]) ?></td>
+                <td><?= $this->Html->link($submissions->author->name,
+                  ['controller' => 'Authors', 'action' => 'view', $submissions->author->id]) ?></td><td><?= h($submissions->isbn) ?></td>
                 <td><?= h($submissions->oclc) ?></td>
                 <td><?= h($submissions->edition) ?></td>
-                <td><?= h($submissions->translator_id) ?></td>
-                <td><?= h($submissions->language_id) ?></td>
-                <td><?= h($submissions->is_prose) ?></td>
-                <td><?= h($submissions->media_id) ?></td>
-                <td><?= h($submissions->notes) ?></td>
-                <td><?= h($submissions->created_on) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Submissions', 'action' => 'view', $submissions->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Submissions', 'action' => 'edit', $submissions->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Submissions', 'action' => 'delete', $submissions->id], ['confirm' => __('Are you sure you want to delete # {0}?', $submissions->id)]) ?>
-                </td>
+                <td><?= $this->Html->link($submissions->translator->name,
+                  ['controller' => 'Translators', 'action' => 'view', $submissions->translator->id]) ?></td>
+                <td><?= $this->Html->link($submissions->language->name,
+                  ['controller' => 'Languages', 'action' => 'view', $submissions->language->id]) ?></td>
+                <td><?= $this->Html->link($submissions->media->name,
+                  ['controller' => 'Media', 'action' => 'view', $submissions->media->id]) ?></td>
             </tr>
             <?php endforeach; ?>
         </table>

@@ -34,7 +34,14 @@ class CollectionsController extends AppController
     public function view($id = null)
     {
         $collection = $this->Collections->get($id, [
-            'contain' => []
+          'contain' => [
+            'Submissions.Authors',
+            'Submissions.Collections',
+            'Submissions.Languages',
+            'Submissions.Media',
+            'Submissions.Translators',
+            'Submissions.Works',
+          ]
         ]);
 
         $this->set('collection', $collection);

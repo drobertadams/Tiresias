@@ -34,7 +34,14 @@ class MediaController extends AppController
     public function view($id = null)
     {
         $media = $this->Media->get($id, [
-            'contain' => ['Submissions']
+          'contain' => [
+            'Submissions.Authors',
+            'Submissions.Collections',
+            'Submissions.Languages',
+            'Submissions.Media',
+            'Submissions.Translators',
+            'Submissions.Works',
+          ]
         ]);
 
         $this->set('media', $media);

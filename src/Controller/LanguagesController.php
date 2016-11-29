@@ -34,7 +34,13 @@ class LanguagesController extends AppController
     public function view($id = null)
     {
         $language = $this->Languages->get($id, [
-            'contain' => ['Submissions']
+            'contain' => [
+              'Submissions.Authors',
+              'Submissions.Works',
+              'Submissions.Languages',
+              'Submissions.Translators',
+              'Submissions.Media'
+            ]
         ]);
 
         $this->set('language', $language);

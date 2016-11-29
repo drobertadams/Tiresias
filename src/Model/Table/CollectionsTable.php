@@ -33,6 +33,10 @@ class CollectionsTable extends Table
         $this->table('collections');
         $this->displayField('name');
         $this->primaryKey('id');
+
+        $this->hasMany('Submissions', [
+            'foreignKey' => 'collection_id'
+        ]);
     }
 
     /**
