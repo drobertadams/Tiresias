@@ -7,8 +7,12 @@
     </ul>
 </nav>
 <div class="submissions view large-9 medium-8 columns content">
-    <h3><?= h($submission->id) ?></h3>
+    <h3><?= h($submission->work->title) ?></h3>
     <table class="vertical-table">
+        <tr>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= h($submission->id) ?></td>
+        </tr>
         <tr>
             <th scope="row"><?= __('Work') ?></th>
             <td><?= $submission->has('work') ? $this->Html->link($submission->work->title, ['controller' => 'Works', 'action' => 'view', $submission->work->id]) : '' ?></td>
