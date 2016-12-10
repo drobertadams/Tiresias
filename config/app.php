@@ -65,7 +65,7 @@ return [
      *   You should treat it as extremely sensitive data.
      */
     'Security' => [
-        'salt' => env('SECURITY_SALT', '__SALT__'),
+        'salt' => env('SECURITY_SALT', 'xyzzy'),
     ],
 
     /**
@@ -232,10 +232,10 @@ return [
              * the following line and set the port accordingly
              */
             //'port' => 'non_standard_port_number',
-            'username' => $username,
-            'password' => $password,
-            'database' => $db,
-            'host' => $server,
+            'username' => 'adams',
+            'password' => 'adams',
+            'database' => 'adams',
+            'host' => 'localhost',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'flags' => [],
