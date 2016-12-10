@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 19, 2016 at 08:31 PM
+-- Generation Time: Dec 10, 2016 at 06:22 PM
 -- Server version: 5.6.33
--- PHP Version: 7.0.12
+-- PHP Version: 5.6.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,7 +31,7 @@ CREATE TABLE `authors` (
 --
 
 INSERT INTO `authors` (`id`, `name`, `created_on`) VALUES
-(1, 'Ciceroo', '2016-11-11 19:31:00'),
+(1, 'Cicero', '2016-11-11 19:31:00'),
 (2, 'Pliny the Elder', '2016-11-11 19:34:00'),
 (3, 'Josephus', '2016-11-11 19:35:00'),
 (4, 'sdfadsjkf', '2016-11-18 20:08:00');
@@ -118,6 +118,7 @@ CREATE TABLE `submissions` (
   `is_prose` tinyint(1) NOT NULL,
   `is_poetry` tinyint(1) NOT NULL,
   `media_id` int(11) NOT NULL,
+  `publication_year` int(4) NOT NULL,
   `collection_id` int(11) DEFAULT NULL,
   `notes` text,
   `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -129,12 +130,13 @@ CREATE TABLE `submissions` (
 -- Dumping data for table `submissions`
 --
 
-INSERT INTO `submissions` (`id`, `work_id`, `author_id`, `isbn`, `oclc`, `edition`, `translator_id`, `language_id`, `is_prose`, `is_poetry`, `media_id`, `collection_id`, `notes`, `created_on`, `created_by_name`, `created_by_email`) VALUES
-(1, 1, 1, '1234', '1234', '1st', 1, 2, 1, 1, 1, 1, 'this is the first one.', '2016-11-11 21:06:00', 'me', 'me@foo.com'),
-(2, 2, 2, '2345', '4235', '7th', 2, 2, 0, 0, 2, 2, 'Awesome!', '2016-11-12 18:50:00', 'foo', 'foo@bar.com'),
-(3, 1, 1, '356', '89', 'asdf', 2, 4, 0, 0, 1, NULL, 'in german!', '2016-11-12 21:22:00', 'Me!', 'foo@bar.com'),
-(4, 1, 1, '3333', '', '', 1, 1, 1, 0, 3, 1, 'fgdsfsdf', '2016-11-18 20:13:00', 'df', 'dfg'),
-(5, 2, 3, '', '', '', 1, 1, 1, 1, 1, NULL, '', '2016-11-19 19:29:00', 'asdf', 'asdf');
+INSERT INTO `submissions` (`id`, `work_id`, `author_id`, `isbn`, `oclc`, `edition`, `translator_id`, `language_id`, `is_prose`, `is_poetry`, `media_id`, `publication_year`, `collection_id`, `notes`, `created_on`, `created_by_name`, `created_by_email`) VALUES
+(1, 1, 1, '1234', '1234', '1st', 1, 2, 1, 1, 1, 2000, 1, 'this is the first one.', '2016-11-11 21:06:00', 'me', 'me@foo.com'),
+(2, 2, 2, '2345', '4235', '7th', 2, 2, 0, 0, 2, 1800, 2, 'Awesome!', '2016-11-12 18:50:00', 'foo', 'foo@bar.com'),
+(3, 1, 1, '356', '89', 'asdf', 2, 4, 0, 0, 1, 0, NULL, 'in german!', '2016-11-12 21:22:00', 'Me!', 'foo@bar.com'),
+(4, 1, 1, '3333', '', '', 1, 1, 1, 0, 3, 1900, 1, 'fgdsfsdf', '2016-11-18 20:13:00', 'df', 'dfg'),
+(5, 2, 3, '', '', '', 1, 1, 1, 1, 1, 0, NULL, '', '2016-11-19 19:29:00', 'asdf', 'asdf'),
+(6, 1, 1, '', '', '', 1, 1, 0, 0, 1, 0, NULL, '', '2016-11-19 19:36:00', 'asdf', 'zsdf');
 
 -- --------------------------------------------------------
 
@@ -256,7 +258,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `submissions`
 --
 ALTER TABLE `submissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `translators`
 --
