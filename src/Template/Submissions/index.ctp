@@ -16,18 +16,19 @@
         <thead>
             <tr>
                 <!-- <th scope="col"><?= $this->Paginator->sort('id') ?></th> -->
+                <th scope="col"><?= $this->Paginator->sort('title') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('work_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('author_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('translator_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('edition') ?></th>
+                <!-- <th scope="col"><?= $this->Paginator->sort('edition') ?></th> -->
                 <th scope="col"><?= $this->Paginator->sort('publication_year') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('isbn') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('oclc') ?></th>
+                <!-- <th scope="col"><?= $this->Paginator->sort('isbn') ?></th> -->
+                <!-- <th scope="col"><?= $this->Paginator->sort('oclc') ?></th> -->
                 <th scope="col"><?= $this->Paginator->sort('language_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('is_prose') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('is_poetry') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('media_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('collection_id') ?></th>
+                <!-- <th scope="col"><?= $this->Paginator->sort('is_prose') ?></th> -->
+                <!-- <th scope="col"><?= $this->Paginator->sort('is_poetry') ?></th> -->
+                <!-- <th scope="col"><?= $this->Paginator->sort('media_id') ?></th> -->
+                <!-- <th scope="col"><?= $this->Paginator->sort('collection_id') ?></th> -->
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -35,18 +36,19 @@
             <?php foreach ($submissions as $submission): ?>
             <tr>
                 <!-- <td><?= $this->Number->format($submission->id) ?></td> -->
+                <td><?= h($submission->title) ?></td>
                 <td><?= $submission->has('work') ? $this->Html->link($submission->work->title, ['controller' => 'Works', 'action' => 'view', $submission->work->id]) : '' ?></td>
                 <td><?= $submission->has('author') ? $this->Html->link($submission->author->name, ['controller' => 'Authors', 'action' => 'view', $submission->author->id]) : '' ?></td>
                 <td><?= $submission->has('translator') ? $this->Html->link($submission->translator->name, ['controller' => 'Translators', 'action' => 'view', $submission->translator->id]) : '' ?></td>
-                <td><?= h($submission->edition) ?></td>
+                <!-- <td><?= h($submission->edition) ?></td> -->
                 <td><?= h($submission->publication_year) ?></td>
-                <td><?= h($submission->isbn) ?></td>
-                <td><?= h($submission->oclc) ?></td>
+                <!-- <td><?= h($submission->isbn) ?></td> -->
+                <!-- <td><?= h($submission->oclc) ?></td> -->
                 <td><?= $submission->has('language') ? $this->Html->link($submission->language->name, ['controller' => 'Languages', 'action' => 'view', $submission->language->id]) : '' ?></td>
-                <td><?= h($submission->is_prose) ?></td>
-                <td><?= h($submission->is_poetry) ?></td>
-                <td><?= $submission->has('media') ? $this->Html->link($submission->media->name, ['controller' => 'Media', 'action' => 'view', $submission->media->id]) : '' ?></td>
-                <td><?= $submission->has('collection') ? $this->Html->link($submission->collection->name, ['controller' => 'Collections', 'action' => 'view', $submission->collection->id]) : '' ?></td>
+                <!-- <td><?= h($submission->is_prose) ?></td> -->
+                <!-- <td><?= h($submission->is_poetry) ?></td> -->
+                <!-- <td><?= $submission->has('media') ? $this->Html->link($submission->media->name, ['controller' => 'Media', 'action' => 'view', $submission->media->id]) : '' ?></td> -->
+                <!-- <td><?= $submission->has('collection') ? $this->Html->link($submission->collection->name, ['controller' => 'Collections', 'action' => 'view', $submission->collection->id]) : '' ?></td> -->
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $submission->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $submission->id]) ?>
