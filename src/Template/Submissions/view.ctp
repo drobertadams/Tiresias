@@ -22,6 +22,10 @@
             <td><?= $submission->has('author') ? $this->Html->link($submission->author->name, ['controller' => 'Authors', 'action' => 'view', $submission->author->id]) : '' ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Title') ?></th>
+            <td><?= h($submission->title) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Isbn') ?></th>
             <td><?= h($submission->isbn) ?></td>
         </tr>

@@ -11,6 +11,7 @@
         <?php
             echo $this->Form->input('work_id', ['options' => $works]);
             echo $this->Form->input('author_id', ['options' => $authors]);
+            echo $this->Form->input('title');
             echo $this->Form->input('isbn');
             echo $this->Form->input('oclc');
             echo $this->Form->input('edition');
