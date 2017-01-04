@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jan 03, 2017 at 11:03 PM
+-- Generation Time: Jan 04, 2017 at 01:07 AM
 -- Server version: 5.6.33
 -- PHP Version: 5.6.27
 
@@ -17,9 +17,98 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `authors`
+--
+
+DROP TABLE IF EXISTS `authors`;
+CREATE TABLE `authors` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `authors`
+--
+
+INSERT INTO `authors` (`id`, `name`, `created_on`) VALUES
+(1, 'Publius Ovidius Naso', '2016-12-27 14:41:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `collections`
+--
+
+DROP TABLE IF EXISTS `collections`;
+CREATE TABLE `collections` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `collections`
+--
+
+INSERT INTO `collections` (`id`, `name`) VALUES
+(1, 'Latin Gems'),
+(2, 'Greek Gems');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `languages`
+--
+
+DROP TABLE IF EXISTS `languages`;
+CREATE TABLE `languages` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `languages`
+--
+
+INSERT INTO `languages` (`id`, `name`, `created_on`) VALUES
+(1, 'English', '2016-11-11 19:38:00'),
+(2, 'French', '2016-11-11 19:39:00'),
+(3, 'Spanish', '2016-11-12 21:18:00'),
+(4, 'German', '2016-11-12 21:18:00'),
+(5, 'Italian', '2016-11-12 21:18:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `media`
+--
+
+DROP TABLE IF EXISTS `media`;
+CREATE TABLE `media` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `media`
+--
+
+INSERT INTO `media` (`id`, `name`, `created_on`) VALUES
+(1, 'Computer File', '2016-11-11 19:40:00'),
+(2, 'eBook', '2016-11-12 18:55:00'),
+(3, 'eText', '2016-12-27 14:46:32'),
+(4, 'Microfilm', '2016-11-12 21:19:00'),
+(5, 'Print', '2016-11-12 21:19:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `submissions`
 --
 
+DROP TABLE IF EXISTS `submissions`;
 CREATE TABLE `submissions` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -46,7 +135,7 @@ CREATE TABLE `submissions` (
 --
 
 INSERT INTO `submissions` (`id`, `title`, `work_id`, `author_id`, `isbn`, `oclc`, `edition`, `translator_id`, `language_id`, `is_prose`, `is_poetry`, `media_id`, `publication_year`, `collection_id`, `notes`, `created_on`, `created_by_name`, `created_by_email`) VALUES
-(1, '[Ovid\'s Metamorphoses ... Translated by Mr. Dryden. Mr. Addison ... and other eminent hands. Publish\'d by Sir Samuel Garth ... The fourth edition.]', 1, 1, '', '562298492', '', 1, 1, 0, 1, 5, 1794, NULL, '', '2011-03-17 16:00:00', 'Robert Adams', 'adamsr@gvsu.edu'),
+(1, 'Ovid\'s Metamorphoses ... Translated by Mr. Dryden. Mr. Addison ... and other eminent hands. Publish\'d by Sir Samuel Garth ... The fourth edition.', 1, 1, '', '562298492', '', 1, 1, 0, 1, 5, 1794, NULL, '', '2011-03-17 16:00:00', 'Robert Adams', 'adamsr@gvsu.edu'),
 (2, 'Ovid\'s Metamorphoses', 1, 1, '', '652376391', '', 2, 1, 0, 1, 5, 1972, NULL, '', '2011-03-17 16:00:00', 'Robert Adams', 'adamsr@gvsu.edu'),
 (3, 'The scourge of Venus (1614).', 1, 1, '', '7146626', '', 3, 1, 0, 1, 5, 1876, NULL, '', '2011-04-17 16:00:00', 'Robert Adams', 'adamsr@gvsu.edu'),
 (4, 'Ovid\'s Metamorphoses, in fifteen books : with the arguments and notes of John Minellius translated into English to which is marginally added, a prose version ... for the life of the schools', 1, 1, '', '55741097', '', 4, 1, 0, 1, 5, 1756, NULL, '', '2011-05-17 16:00:00', 'Robert Adams', 'adamsr@gvsu.edu'),
@@ -180,9 +269,141 @@ INSERT INTO `submissions` (`id`, `title`, `work_id`, `author_id`, `isbn`, `oclc`
 (132, 'Stories from the metamorphoses', 1, 1, '', '837381787', '', 0, 1, 1, 0, 5, 2013, NULL, '', '0000-00-00 00:00:00', 'Robert Adams', 'adamsr@gvsu.edu'),
 (133, 'Ovid [i.e. part of Book 13 of the Metamorphoses] ', 1, 1, '', '562297067', '', 0, 1, 0, 1, 5, 1850, NULL, '', '0000-00-00 00:00:00', 'Robert Adams', 'adamsr@gvsu.edu');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `translators`
+--
+
+DROP TABLE IF EXISTS `translators`;
+CREATE TABLE `translators` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `translators`
+--
+
+INSERT INTO `translators` (`id`, `name`, `created_on`) VALUES
+(0, 'UNKNOWN', '2017-01-03 22:00:00'),
+(1, 'Addison, Joseph', '0000-00-00 00:00:00'),
+(2, 'Anderson, William Scovil', '0000-00-00 00:00:00'),
+(3, 'Austin, Henry', '0000-00-00 00:00:00'),
+(4, 'Bailey, Nathan', '0000-00-00 00:00:00'),
+(5, 'Brinsley, John', '0000-00-00 00:00:00'),
+(6, 'Brodie, James', '0000-00-00 00:00:00'),
+(7, 'Brown, Taylor', '0000-00-00 00:00:00'),
+(8, 'Caxton, William', '0000-00-00 00:00:00'),
+(9, 'Clark, John', '0000-00-00 00:00:00'),
+(10, 'Croxall, Samuel', '0000-00-00 00:00:00'),
+(11, 'Davidson, Joseph', '0000-00-00 00:00:00'),
+(12, 'Dennis, John', '0000-00-00 00:00:00'),
+(13, 'Dryden, John', '0000-00-00 00:00:00'),
+(14, 'Garth, Sir Samuel', '0000-00-00 00:00:00'),
+(15, 'George Sandys', '0000-00-00 00:00:00'),
+(16, 'Golding, Arthur', '0000-00-00 00:00:00'),
+(17, 'Goold, George P', '0000-00-00 00:00:00'),
+(18, 'Green, W', '0000-00-00 00:00:00'),
+(19, 'Gregory, Horace', '0000-00-00 00:00:00'),
+(20, 'Hall, Thomas', '0000-00-00 00:00:00'),
+(21, 'Hamilton, James', '0000-00-00 00:00:00'),
+(22, 'Hayes, BJ', '0000-00-00 00:00:00'),
+(23, 'Heilig, George William', '0000-00-00 00:00:00'),
+(24, 'Hill, D E', '0000-00-00 00:00:00'),
+(25, 'Hopkinson, Neil ', '0000-00-00 00:00:00'),
+(26, 'Howard, J', '0000-00-00 00:00:00'),
+(27, 'Humphries, Rolfe', '0000-00-00 00:00:00'),
+(28, 'John Ninellius, N Bailey', '0000-00-00 00:00:00'),
+(29, 'Kemb, Andrew', '0000-00-00 00:00:00'),
+(30, 'King, Henry', '0000-00-00 00:00:00'),
+(31, 'Lee, William', '0000-00-00 00:00:00'),
+(32, 'Lombardo, Stanley', '0000-00-00 00:00:00'),
+(33, 'Mandelbaum, Allen', '0000-00-00 00:00:00'),
+(34, 'Marks, S', '0000-00-00 00:00:00'),
+(35, 'Martin, Charles', '0000-00-00 00:00:00'),
+(36, 'Melville, A D', '0000-00-00 00:00:00'),
+(37, 'Meston, William', '0000-00-00 00:00:00'),
+(38, 'Miller, Frank Justus', '0000-00-00 00:00:00'),
+(39, 'Miller, Goold', '0000-00-00 00:00:00'),
+(40, 'Minellius', '0000-00-00 00:00:00'),
+(41, 'Mongan, James Roscoe', '0000-00-00 00:00:00'),
+(42, 'Mongan, R', '0000-00-00 00:00:00'),
+(43, 'More, Brookes', '0000-00-00 00:00:00'),
+(44, 'Newman, G G', '0000-00-00 00:00:00'),
+(45, 'Orger, Thomas', '0000-00-00 00:00:00'),
+(46, 'Peck, William T', '0000-00-00 00:00:00'),
+(47, 'Peend, Thomas', '0000-00-00 00:00:00'),
+(48, 'Pollard, Claire', '0000-00-00 00:00:00'),
+(49, 'Pontanus, Jacobus', '0000-00-00 00:00:00'),
+(50, 'Prout, J A', '0000-00-00 00:00:00'),
+(51, 'Pyle, Howard', '0000-00-00 00:00:00'),
+(52, 'Raeburn, David', '0000-00-00 00:00:00'),
+(53, 'Raeburn,D A', '0000-00-00 00:00:00'),
+(54, 'Riley, Henry T', '0000-00-00 00:00:00'),
+(55, 'Sandys, George', '0000-00-00 00:00:00'),
+(56, 'Schmeling, Gareth L', '0000-00-00 00:00:00'),
+(57, 'Sewell, George', '0000-00-00 00:00:00'),
+(58, 'Sewell, Geroge', '0000-00-00 00:00:00'),
+(59, 'Showerman, Grant', '0000-00-00 00:00:00'),
+(60, 'Simmons, Charles', '0000-00-00 00:00:00'),
+(61, 'Simpson, Michael', '0000-00-00 00:00:00'),
+(62, 'Slater, David Ansell', '0000-00-00 00:00:00'),
+(63, 'Swift, Jonathan', '0000-00-00 00:00:00'),
+(64, 'Tate, Nahum', '0000-00-00 00:00:00'),
+(65, 'Taylor, Robert West', '0000-00-00 00:00:00'),
+(66, 'Tomlinson, Charles ', '0000-00-00 00:00:00'),
+(67, 'Watts, Albert Everett', '0000-00-00 00:00:00'),
+(68, 'Wright, F A', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `works`
+--
+
+DROP TABLE IF EXISTS `works`;
+CREATE TABLE `works` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `works`
+--
+
+INSERT INTO `works` (`id`, `title`, `created_on`) VALUES
+(1, 'Metamorphoses', '2017-01-03 21:07:08');
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `authors`
+--
+ALTER TABLE `authors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `collections`
+--
+ALTER TABLE `collections`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `languages`
+--
+ALTER TABLE `languages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `media`
+--
+ALTER TABLE `media`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `submissions`
@@ -197,14 +418,56 @@ ALTER TABLE `submissions`
   ADD KEY `collection_id` (`collection_id`);
 
 --
+-- Indexes for table `translators`
+--
+ALTER TABLE `translators`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `works`
+--
+ALTER TABLE `works`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `authors`
+--
+ALTER TABLE `authors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `collections`
+--
+ALTER TABLE `collections`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `languages`
+--
+ALTER TABLE `languages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `media`
+--
+ALTER TABLE `media`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT for table `submissions`
 --
 ALTER TABLE `submissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=618;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=619;
+--
+-- AUTO_INCREMENT for table `translators`
+--
+ALTER TABLE `translators`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+--
+-- AUTO_INCREMENT for table `works`
+--
+ALTER TABLE `works`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 --
 -- Constraints for dumped tables
 --
