@@ -7,6 +7,7 @@ use Cake\ORM\Entity;
  * Submission Entity
  *
  * @property int $id
+ * @property string title
  * @property int $work_id
  * @property int $author_id
  * @property string $isbn
