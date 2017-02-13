@@ -4,6 +4,18 @@
 <p><%= link_to 'Home', '/' %> :
 <%= link_to 'New Submission', new_submission_path %></p>
 
+<p>
+  <%= form_tag(submissions_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Submissions" %>
+    <%= submit_tag "Search", :name => nil %>
+  <% end %>
+  <%= button_to "Clear Search", { :action => "index" }, :method => :get %>
+</p>
+
+<% if @submissions.blank? %>
+  <h4>There are no submissions containing the term "<%= params[:search] %>".</h4>
+<% end %>
+
 <table>
   <tr>
     <th>Title</th> <th>Translator</th> <th>Year</th>
