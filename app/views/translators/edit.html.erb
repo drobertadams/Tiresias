@@ -1,0 +1,31 @@
+<h1>Editing Translator</h1>
+
+<%# Submit this form with the PATCH method. %>
+<%= form_for :translator, url: translator_path(@translator), method: :patch do |f| %>
+
+  <% if @translator.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@translator.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @translator.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+
+<%= link_to 'Back', translators_path %>

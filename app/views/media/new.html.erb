@@ -1,0 +1,30 @@
+<h1>Create New Medium</h1>
+
+<% if @medium.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@medium.errors.count, "error") %> prohibited
+      this medium from being saved:
+    </h2>
+    <ul>
+      <% @medium.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%# The URL parameter will ensure that a POST method is sent to the route
+    authors/ which in turn will call the authors#create method. %>
+<%= form_for :medium, url: media_path do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', media_path %>

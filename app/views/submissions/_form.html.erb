@@ -1,0 +1,47 @@
+<%= form_for @submission do |f| %>
+
+<% if @submission.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@submission.errors.count, "error") %> prohibited
+      this submission from being saved:
+    </h2>
+    <ul>
+      <% @submission.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%# The URL parameter will ensure that a POST method is sent to the route
+    submissions/ which in turn will call the submissions#create method. %>
+<table>
+  <tr><td class="right"><%= f.label :title %></td> <td><%= f.text_field :title %></td></tr>
+  <tr><td class="right">Work</td><td>
+    <%= f.collection_select(:work_id, Work.all, :id, :title) %>
+  </td></tr>
+  <tr><td class="right">Author</td><td>
+    <%= f.collection_select(:author_id, Author.all, :id, :name) %>
+  </td></tr>
+  <tr><td class="right">Language</td><td>
+    <%= f.collection_select(:language_id, Language.all, :id, :name) %>
+  </td></tr>
+  <tr><td class="right">Translator</td><td>
+    <%= f.collection_select(:translator_id, Translator.all, :id, :name) %>
+  </td></tr>
+  <tr><td class="right"><%= f.label :isbn %> </td> <td><%= f.text_field :isbn %></td></tr>
+  <tr><td class="right"><%= f.label :oclc %> </td> <td><%= f.text_field :oclc %></td></tr>
+  <tr><td class="right"><%= f.label :edition %> </td> <td><%= f.text_field :edition %></td></tr>
+  <tr><td class="right"><%= f.label :is_prose %></td> <td> <%= f.check_box :is_prose %></td></tr>
+  <tr><td class="right"><%= f.label :is_poetry %> </td> <td><%= f.check_box :is_poetry %></td></tr>
+  <tr><td class="right">Medium</td><td>
+    <%= f.collection_select(:medium_id, Medium.all, :id, :name) %>
+  </td></tr>
+  <tr><td class="right"><%= f.label :publication_year %> </td> <td><%= f.text_field :publication_year %></td></tr>
+  <tr><td class="right"><%= f.label :notes %></td> <td> <%= f.text_area :notes %></td></tr>
+</table>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

@@ -1,0 +1,26 @@
+
+<h1>Listing Submissions</h1>
+
+<p><%= link_to 'Home', '/' %> :
+<%= link_to 'New Submission', new_submission_path %></p>
+
+<table>
+  <tr>
+    <th>Title</th> <th>Translator</th> <th>Year</th>
+  </tr>
+
+  <% @submissions.each do |submission| %>
+    <tr>
+      <td><%= truncate(submission.title) %></td>
+      <td><%= Translator.find(submission.translator_id).name %></td>
+      <td><%= submission.publication_year %></td>
+      <td><%= link_to 'Show', submission_path(submission) %> :
+        <%= link_to 'Edit', edit_submission_path(submission) %> :
+        <%= link_to 'Destroy', submission_path(submission),
+           method: :delete,
+           data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+
+</table>

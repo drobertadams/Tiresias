@@ -1,0 +1,24 @@
+
+<h1>Listing Works</h1>
+
+<p><%= link_to 'Home', '/' %> :
+<%= link_to 'New Work', new_work_path %>
+</p>
+
+<table>
+  <tr>
+    <th>Title</th>
+  </tr>
+
+  <% @works.each do |work| %>
+    <tr>
+      <td><%= work.title %></td>
+      <td><%= link_to 'Show', work_path(work) %></td>
+      <td><%= link_to 'Edit', edit_work_path(work) %></td>
+      <td><%= link_to 'Destroy', work_path(work),
+             method: :delete,
+             data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+
+</table>

@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  work: one
+  author: one
+  isbn: MyString
+  oclc: MyString
+  edition: MyString
+  translator: one
+  language: one
+  is_prose: false
+  is_poetry: false
+  publication_year: 1
+  collection: 
+  notes: MyText
+  medium: one
+
+two:
+  title: MyString
+  work: two
+  author: two
+  isbn: MyString
+  oclc: MyString
+  edition: MyString
+  translator: two
+  language: two
+  is_prose: false
+  is_poetry: false
+  publication_year: 1
+  collection: 
+  notes: MyText
+  medium: two

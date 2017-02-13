@@ -1,0 +1,24 @@
+
+<h1>Listing Collections</h1>
+
+<p><%= link_to 'Home', '/' %> :
+<%= link_to 'New Collection', new_collection_path %>
+</p>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+  <% @collections.each do |collection| %>
+    <tr>
+      <td><%= collection.name %></td>
+      <td><%= link_to 'Show', collection_path(collection) %></td>
+      <td><%= link_to 'Edit', edit_collection_path(collection) %></td>
+      <td><%= link_to 'Destroy', collection_path(collection),
+             method: :delete,
+             data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+
+</table>

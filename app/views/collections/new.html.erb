@@ -1,0 +1,30 @@
+<h1>Create New Collection</h1>
+
+<% if @collection.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@collection.errors.count, "error") %> prohibited
+      this collection from being saved:
+    </h2>
+    <ul>
+      <% @collection.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%# The URL parameter will ensure that a POST method is sent to the route
+    collections/ which in turn will call the collections#create method. %>
+<%= form_for :collection, url: collections_path do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', collections_path %>
