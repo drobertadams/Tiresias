@@ -8,8 +8,12 @@ class Submission < ApplicationRecord
   # validates :work, presence: true
 
   def self.search(search)
-    self.joins(:author).joins(:translator).
-      where("title LIKE ? OR translators.name LIKE ?", "%#{search}%", "%#{search}%")
+    if search
+      self.joins(:author).joins(:translator).
+        where("title LIKE ? OR translators.name LIKE ?", "%#{search}%", "%#{search}%")
+    else
+      all
+    end
   end
 
 end
