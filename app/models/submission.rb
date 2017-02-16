@@ -9,7 +9,7 @@ class Submission < ApplicationRecord
 
   def self.search(search)
     if search
-      self.joins(:author).joins(:translator).
+      self.joins(:translator).
         where("title LIKE ? OR translators.name LIKE ?", "%#{search}%", "%#{search}%")
     else
       all
