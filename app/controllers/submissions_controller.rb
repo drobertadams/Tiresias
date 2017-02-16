@@ -1,12 +1,15 @@
 class SubmissionsController < ApplicationController
 
+  helper_method :sort_column, :sort_direction
+
     #----------------------------------------------------------------------------
     def index
       #@submissions = Submission.all
       if params[:search]
         @submissions = Submission.search(params[:search])
       else
-        @submissions = Submission.all
+        # Join with translator for sorting by translator name.
+        @submissions = Submission.joins(:translator).order(sort_column + " " + sort_direction)
       end
       @submissions = @submissions.paginate(:per_page => 30, :page => params[:page])
     end
@@ -72,6 +75,18 @@ class SubmissionsController < ApplicationController
           :translator_id, :isbn, :oclc, :edition,
           :is_prose, :is_poetry, :medium_id,
           :publication_year, :notes)
+      end
+
+      def sort_column
+        # See if the sort column is one of the known column names, otherwise
+        # default to title.
+        %w[title publication_year name].include?(params[:sort]) ? params[:sort] : "title"
+      end
+
+      def sort_direction
+        # See if the current direction param is in the array (either asc or
+        # desc), if not, default to "asc".
+        %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
       end
 
 end

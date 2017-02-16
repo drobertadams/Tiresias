@@ -52,3 +52,18 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+/* Styling for sorted column arrows. */
+th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+th .asc {
+  background-image: url(<%= asset_path 'up_arrow.gif' %>)
+}
+
+th .desc {
+  background-image: url(<%= asset_path 'down_arrow.gif' %>)
+}

@@ -22,7 +22,10 @@
 
 <table>
   <tr>
-    <th>Title</th> <th>Translator</th> <th>Year</th>
+    <%# sortable is defined in application_helper %>
+    <th><%= sortable "title" %></th>
+    <th><%= sortable "name", "Translator"%></th>
+    <th><%= sortable "publication_year", "Year" %></th>
   </tr>
 
   <% @submissions.each do |submission| %>
