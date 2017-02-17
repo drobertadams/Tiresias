@@ -17,7 +17,7 @@
 <%# The URL parameter will ensure that a POST method is sent to the route
     submissions/ which in turn will call the submissions#create method. %>
 <table>
-  <tr><td class="right"><%= f.label :title %></td> <td><%= f.text_field :title %></td></tr>
+  <tr><td class="right"><%= f.label :title %></td> <td><%= f.text_field :title, :size=>"50" %></td></tr>
   <tr><td class="right">Work</td><td>
     <%= f.collection_select(:work_id, Work.all, :id, :title) %>
   </td></tr>

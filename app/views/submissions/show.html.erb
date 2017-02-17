@@ -3,6 +3,7 @@
 <p><%= link_to 'Back', submissions_path %></p>
 
 <table>
+  <tr><td class="right">Title</td><td><%= @submission.title %> </td></tr>
   <tr><td class="right">Work</td><td><%= Work.find(@submission.work_id).title %> </td></tr>
   <tr><td class="right">Author</td><td><%= Author.find(@submission.author_id).name %> </td></tr>
   <tr><td class="right">Language</td><td><%= Language.find(@submission.language_id).name %></td></tr>

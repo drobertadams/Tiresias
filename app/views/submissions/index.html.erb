@@ -33,7 +33,7 @@
 
   <% @submissions.each do |submission| %>
     <tr>
-      <td><%= truncate(submission.title) %></td>
+      <td><%= truncate(submission.title, length: 75) %></td>
       <td><%= Translator.find(submission.translator_id).name %></td>
       <td><%= submission.publication_year %></td>
       <td><%= link_to 'Show', submission_path(submission) %> :
