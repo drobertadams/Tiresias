@@ -1,12 +1,11 @@
-<h1>Tiresias</h1>
-
 <p>Welcome to the Tiresias project, now on Rails!</p>
 
-<p><%= link_to 'Submissions', controller: 'submissions' %></p>
-
-<%= link_to 'Authors', controller: 'authors' %> <br/>
-<%= link_to 'Collections', controller: 'collections' %><br/>
-<%= link_to 'Languages', controller: 'languages' %><br/>
-<%= link_to 'Media', controller: 'media' %><br/>
-<%= link_to 'Translators', controller: 'translators' %><br/>
-<%= link_to 'Works', controller: 'works' %>
+<div class="list-group">
+  <%= link_to 'Submissions', {controller: 'submissions'}, class: 'list-group-item active' %>
+  <%= link_to 'Authors', {controller: 'authors'}, class:'list-group-item list-group-item-action' %>
+  <%= link_to 'Collections', {controller: 'collections'}, class:'list-group-item list-group-item-action'%>
+  <%= link_to 'Languages', {controller: 'languages'}, class:'list-group-item list-group-item-action' %>
+  <%= link_to 'Media', {controller: 'media'}, class:'list-group-item list-group-item-action' %>
+  <%= link_to 'Translators', {controller: 'translators'}, class:'list-group-item list-group-item-action' %>
+  <%= link_to 'Works', {controller: 'works'}, class:'list-group-item list-group-item-action' %>
+</div>

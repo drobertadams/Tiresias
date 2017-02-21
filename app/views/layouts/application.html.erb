@@ -9,21 +9,16 @@
   </head>
 
   <body>
-    
-    <div id="user_nav">
-      <% if current_user %>
-        <%= link_to "Edit profile", edit_user_path(:current) %>
-        <%= link_to "Logout", logout_path %>
-      <% else %>
-        <%= link_to "Register", new_user_path %>
-        <%= link_to "Log in", login_path %>
-      <% end %>
-    </div>
+    <%= render 'layouts/header' %>
 
     <% if flash[:notice] %>
-      <div class="notice"><%= flash[:notice] %></div>
+      <div class="alert alert-info" role="alert">
+        <%= flash[:notice] %>
+      </div>
     <% end %>
 
-    <%= yield %>
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
   </body>
 </html>

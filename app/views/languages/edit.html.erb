@@ -1,31 +1,3 @@
 <h1>Editing Language</h1>
 
-<%# Submit this form with the PATCH method. %>
-<%= form_for :language, url: language_path(@language), method: :patch do |f| %>
-
-  <% if @language.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@language.errors.count, "error") %> prohibited
-        this language from being saved:
-      </h2>
-      <ul>
-        <% @language.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
-
-<% end %>
-
-<%= link_to 'Back', languages_path %>
+<%= render 'form' %>

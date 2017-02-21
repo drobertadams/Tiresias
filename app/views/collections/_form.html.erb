@@ -1,0 +1,27 @@
+
+<p><%= link_to 'Back', collections_path %></p>
+
+<%= form_for @collection do |f| %>
+
+  <% if @collection.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h2>
+        <%= pluralize(@collection.errors.count, "error") %> prohibited
+        this collection from being saved:
+      </h2>
+      <ul>
+        <% @collection.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <%= f.submit %>
+
+<% end %>

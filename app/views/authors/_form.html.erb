@@ -1,0 +1,27 @@
+<p><%= link_to 'Back', authors_path %></p>
+
+<%# Submit this form with the PATCH method. %>
+<%= form_for @author do |f| %>
+
+  <% if @author.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h2>
+        <%= pluralize(@author.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @author.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <%= f.submit %>
+
+<% end %>

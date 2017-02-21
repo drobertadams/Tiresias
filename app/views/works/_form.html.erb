@@ -1,0 +1,25 @@
+<p><%= link_to 'Back', works_path %></p>
+
+<%= form_for @work do |f| %>
+
+  <% if @work.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h2>
+        <%= pluralize(@work.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @work.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+
+    <%= f.submit %>
+<% end %>

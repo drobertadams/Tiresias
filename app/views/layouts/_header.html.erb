@@ -1,0 +1,18 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <%= link_to "Tiresias", root_path, class: "navbar-brand" %>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if current_user %>
+        <li class="nav-item"><%= link_to "Edit profile", edit_user_path(:current), class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Logout", logout_path, class: "nav-link" %></li>
+      <% else %>
+        <li class="nav-item"><%= link_to "Register", new_user_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Log in", login_path, class: "nav-link" %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

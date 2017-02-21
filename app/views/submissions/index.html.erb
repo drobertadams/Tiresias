@@ -1,22 +1,25 @@
 
-<h1>Listing Submissions</h1>
+<h1>Submissions</h1>
 
-<p><%= link_to 'Home', '/' %> :
-<%= link_to 'New Submission', new_submission_path %></p>
+<p><%= link_to 'New Submission', new_submission_path %></p>
 
 <p>
-  <%= form_tag(submissions_path, :method => "get", id: "search-form") do %>
+  <%= form_tag(submissions_path, :method => "get", id: "search-form", class: 'form-inline') do %>
     <%# Add hidden sort and direction to persist these on a search. %>
     <%= hidden_field_tag :direction, params[:direction] %>
     <%= hidden_field_tag :sort, params[:sort] %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search Submissions" %>
-    <%= submit_tag "Search", :name => nil %>
+    <div class="form-group">
+      <%= text_field_tag :search, params[:search], placeholder: "Search Submissions", class:'form-control mr-2' %>
+      <%= submit_tag "Search", :name => nil, class:'btn btn-primary mr-2' %>
+      <%= link_to "Clear Search", { :action => "index" }, :method => :get, class:'btn btn-secondary' %>
+    </div>
   <% end %>
-  <%= button_to "Clear Search", { :action => "index" }, :method => :get %>
 </p>
 
 <% if @submissions.blank? %>
-  <h4>There are no submissions containing the term "<%= params[:search] %>".</h4>
+  <div class="alert alert-danger" role="alert">
+    There are no submissions containing the term "<%= params[:search] %>".
+  </div>
 <% end %>
 
 <div id="submissions">

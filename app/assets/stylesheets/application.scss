@@ -10,8 +10,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
 
  body {
@@ -61,9 +59,13 @@ th .current {
 }
 
 th .asc {
-  background-image: url(<%= asset_path 'up_arrow.gif' %>)
+  background-image: 'up_arrow.gif';
 }
 
 th .desc {
-  background-image: url(<%= asset_path 'down_arrow.gif' %>)
+  background-image: 'down_arrow.gif';
 }
+
+#user_nav { float: right; }
+
+@import "bootstrap";

@@ -24,6 +24,9 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 # authlogic authentication for user logins.
 gem 'authlogic'
+# Bootstrap styling.
+gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'will_paginate-bootstrap4'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
