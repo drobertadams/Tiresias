@@ -1,5 +1,7 @@
 <p><%= link_to 'Back', works_path %></p>
 
+<% disabled ||= false # Form is enabled by default %>
+
 <%= form_for @work do |f| %>
 
   <% if @work.errors.any? %>
@@ -18,8 +20,9 @@
 
     <div class="form-group">
       <%= f.label :title %>
-      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.text_field :title, class: 'form-control', readonly: disabled %>
     </div>
 
-    <%= f.submit %>
+    <%= f.submit style: disabled ? "display:none" : "" %>
+
 <% end %>

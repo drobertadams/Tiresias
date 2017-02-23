@@ -1,6 +1,8 @@
 
 <p><%= link_to 'Back', collections_path %></p>
 
+<% disabled ||= false # Form is enabled by default %>
+
 <%= form_for @collection do |f| %>
 
   <% if @collection.errors.any? %>
@@ -19,9 +21,9 @@
 
   <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.text_field :name, class: 'form-control', readonly: disabled  %>
   </div>
 
-  <%= f.submit %>
+  <%= f.submit style: disabled ? "display:none" : "" %>
 
 <% end %>

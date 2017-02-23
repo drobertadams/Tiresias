@@ -1,5 +1,7 @@
 <p><%= link_to 'Back', languages_path %></p>
 
+<% disabled ||= false # Form is enabled by default %>
+
 <%= form_for @language do |f| %>
 
   <% if @language.errors.any? %>
@@ -18,9 +20,9 @@
 
   <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.text_field :name, class: 'form-control', readonly: disabled %>
   </p>
 
-  <%= f.submit %>
+  <%= f.submit style: disabled ? "display:none" : "" %>
 
 <% end %>

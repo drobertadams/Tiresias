@@ -1,5 +1,7 @@
 <p><%= link_to 'Back', submissions_path %></p>
 
+<% disabled ||= false # Form is enabled by default %>
+
 <%= form_for @submission do |f| %>
 
   <% if @submission.errors.any? %>
@@ -18,60 +20,60 @@
 
   <div class="form-group">
     <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control'%>
+    <%= f.text_field :title, class: 'form-control', readonly: disabled %>
   </div>
   <div class="form-group">
     <%= f.label :work %>
-    <%= f.collection_select(:work_id, Work.all, :id, :title, {:prompt=>false}, {class: 'form-control custom-select'}) %>
+    <%= f.collection_select(:work_id, Work.all, :id, :title, {:prompt=>false}, {class: 'form-control custom-select', :disabled => disabled}) %>
   </div>
   <div class="form-group">
     <%= f.label :author %>
-    <%= f.collection_select(:author_id, Author.all, :id, :name, {:prompt=>false}, {class: 'form-control custom-select'}) %>
+    <%= f.collection_select(:author_id, Author.all, :id, :name, {:prompt=>false}, {class: 'form-control custom-select', :disabled => disabled}) %>
   </div>
   <div class="form-group">
     <%= f.label :language %>
-    <%= f.collection_select(:language_id, Language.all, :id, :name, {:prompt=>false}, {class: 'form-control custom-select'}) %>
+    <%= f.collection_select(:language_id, Language.all, :id, :name, {:prompt=>false}, {class: 'form-control custom-select', :disabled => disabled}) %>
   </div>
   <div class="form-group">
     <%= f.label :translator %>
-    <%= f.collection_select(:translator_id, Translator.all, :id, :name, {:prompt=>false}, {class: 'form-control custom-select'}) %>
+    <%= f.collection_select(:translator_id, Translator.all, :id, :name, {:prompt=>false}, {class: 'form-control custom-select', :disabled => disabled}) %>
   </div>
   <div class="form-group">
     <%= f.label :isbn %>
-    <%= f.text_field :isbn, class: 'form-control' %>
+    <%= f.text_field :isbn, class: 'form-control', readonly: disabled %>
   </div>
   <div class="form-group">
     <%= f.label :oclc %>
-    <%= f.text_field :oclc, class: 'form-control' %>
+    <%= f.text_field :oclc, class: 'form-control', readonly: disabled %>
   </div>
   <div class="form-group">
     <%= f.label :edition %>
-    <%= f.text_field :edition, class: 'form-control'%>
+    <%= f.text_field :edition, class: 'form-control', readonly: disabled %>
   </div>
   <div class="form-check">
     <%= f.label :is_prose, class:'form-check-label' do %>
-      <%= f.check_box :is_prose, class: 'form-check-input' %>
+      <%= f.check_box :is_prose, class: 'form-check-input', disabled: disabled %>
       Is Prose?
     <% end %>
   </div>
   <div class="form-check">
     <%= f.label :is_poetry, class:'form-check-label' do %>
-      <%= f.check_box :is_poetry, class: 'form-check-input' %>
+      <%= f.check_box :is_poetry, class: 'form-check-input', disabled: disabled %>
       Is Poetry?
     <% end %>
   </div>
   <div class="form-group">
     <%=f.label :medium %>
-    <%= f.collection_select(:medium_id, Medium.all, :id, :name, {:prompt=>false}, {class: 'form-control custom-select'}) %>
+    <%= f.collection_select(:medium_id, Medium.all, :id, :name, {:prompt=>false}, {class: 'form-control custom-select', :disabled => disabled}) %>
   </div>
   <div class="form-group">
     <%= f.label :publication_year %>
-    <%= f.text_field :publication_year, class: 'form-control' %></div>
+    <%= f.text_field :publication_year, class: 'form-control', readonly: disabled %></div>
   <div class="form-group">
     <%= f.label :notes %>
-    <%= f.text_area :notes, class: 'form-control' %>
+    <%= f.text_area :notes, class: 'form-control', readonly: disabled %>
   </div>
 
-  <%= f.submit %>
+  <%= f.submit style: disabled ? "display:none" : "" %>
 
 <% end %>
