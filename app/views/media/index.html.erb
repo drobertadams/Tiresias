@@ -1,6 +1,8 @@
 <h1>Media</h1>
 
+<% if can? :create, @medium %>
 <p><%= link_to 'New Medium', new_medium_path %></p>
+<% end %>
 
 <table>
   <tr>

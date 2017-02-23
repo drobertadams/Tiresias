@@ -1,7 +1,9 @@
 
 <h1>Submissions</h1>
 
+<% if can? :create, Submission %>
 <p><%= link_to 'New Submission', new_submission_path %></p>
+<% end %>
 
 <p>
   <%= form_tag(submissions_path, :method => "get", id: "search-form", class: 'form-inline') do %>

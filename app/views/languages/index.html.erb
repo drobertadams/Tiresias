@@ -1,6 +1,8 @@
 <h1>Languages</h1>
 
+<% if can? :create, @language %>
 <p><%= link_to 'New Language', new_language_path %></p>
+<% end %>
 
 <table>
   <tr>

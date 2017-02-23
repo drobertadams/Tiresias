@@ -1,5 +1,8 @@
 class AuthorsController < ApplicationController
 
+  # Set up CanCan automatic authorization on all methods. See models/ability.rb.
+  load_and_authorize_resource
+
   #----------------------------------------------------------------------------
   def index
     @authors = Author.all

@@ -1,7 +1,10 @@
 
 <h1>Translators</h1>
 
+<% if can? :create, @translator %>
 <p><%= link_to 'New Translator', new_translator_path %></p>
+<% end %>
+
 
 <table>
   <tr>
