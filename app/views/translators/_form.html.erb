@@ -4,19 +4,7 @@
 
 <%= form_for @translator do |f| %>
 
-  <% if @translator.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-      <h2>
-        <%= pluralize(@translator.errors.count, "error") %> prohibited
-        this translator from being saved:
-      </h2>
-      <ul>
-        <% @translator.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'error', obj: @translator %>
 
   <div class="form-group">
     <%= f.label :name %>

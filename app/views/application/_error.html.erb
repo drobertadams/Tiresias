@@ -1,0 +1,18 @@
+<%# You must pass in "obj", the object to test for errors. %>
+<% obj = obj.nil? ? false : obj %>
+
+<% if obj %>
+  <% if obj.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h2>
+        <%= pluralize(obj.errors.count, "error") %> prohibited
+        this item from being saved:
+      </h2>
+      <ul>
+        <% obj.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>

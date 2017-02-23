@@ -4,19 +4,7 @@
 
 <%= form_for @medium do |f| %>
 
-  <% if @medium.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-      <h2>
-        <%= pluralize(@medium.errors.count, "error") %> prohibited
-        this article from being saved:
-      </h2>
-      <ul>
-        <% @medium.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'error', obj: @medium %>
 
   <div class="form-group">
     <%= f.label :name %>

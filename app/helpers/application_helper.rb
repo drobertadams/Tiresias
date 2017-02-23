@@ -6,7 +6,7 @@ module ApplicationHelper
 
     # NB: sort_column and sort_direction are helpers defined in the submissions
     # controller.
-    
+
     # Set the CSS class based on if the clicked column is the currently sorted
     # column.
     css_class = column == sort_column ? "current #{sort_direction}" : nil

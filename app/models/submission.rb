@@ -1,11 +1,20 @@
 class Submission < ApplicationRecord
   belongs_to :work
-  belongs_to :author
-  belongs_to :translator
-  belongs_to :language
-  belongs_to :medium
+  validates :work_id, presence: true
 
-  # validates :work, presence: true
+  belongs_to :author
+  validates :author_id, presence: true
+
+  belongs_to :translator
+  validates :translator_id, presence: true
+
+  belongs_to :language
+  validates :language_id, presence: true
+
+  belongs_to :medium
+  validates :medium_id, presence: true
+
+  validates :title, presence: true, length: { minimum: 5 }
 
   def self.search(search)
     if search
