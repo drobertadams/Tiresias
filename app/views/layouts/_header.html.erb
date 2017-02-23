@@ -16,3 +16,10 @@
     </ul>
   </div>
 </nav>
+
+
+<% if flash[:error] %>
+  <div class="alert alert-danger" role="alert">
+    <%= flash[:error] %>
+  </div>
+<% end %>

@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
   # Register current_user as a global helper method.
   helper_method :current_user
 
+  # When CanCan raises an access denied exception we catch it, set the flash
+  # message (displayed in views/layouts/_header.html.erb) and redirect to
+  # the same page.
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Access denied!"
+    redirect_back fallback_location:root_url
+  end
+
   private
     # Returns the current user session object.
     def current_user_session
