@@ -8,9 +8,9 @@ class Ability
     can :read, :all # everybody can read everything
     can :create, Submission # everybody can create a submission
 
-    #if user.role? :entry
-    #  can :create, Submission
-    #end
+    if user.role? :entry
+      can :update, Submission
+    end
     if user.role? :editor
       can :manage, Submission
     end

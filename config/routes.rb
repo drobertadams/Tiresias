@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
+
   get 'user_sessions/new'
 
   get 'users/new'
@@ -15,12 +17,10 @@ Rails.application.routes.draw do
   resources :users
 
   # Add user_sessions as a RESTful resource and set up a couple of
-  # URL-friendly routes.
+  # URL-friendly routes for 'login' and 'logout'
   resources :user_sessions
   get 'login', to: 'user_sessions#new'
   get 'logout', to: 'user_sessions#destroy'
-  #map.login 'login', :controller => 'user_sessions', :action => 'new'
-  #map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
 
   # For details on the DSL available within this file, see
   # http://guides.rubyonrails.org/routing.html

@@ -27,7 +27,7 @@ gem 'authlogic'
 # Bootstrap styling.
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'will_paginate-bootstrap4'
-gem 'cancan' # authentication
+gem 'cancancan' # authentication
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

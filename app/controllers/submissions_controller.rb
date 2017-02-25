@@ -1,9 +1,5 @@
 class SubmissionsController < ApplicationController
-
-  # We can't set up CanCan automatic authorization on all methods. There
-  # seems to be a conflict with create according to
-  # http://stackoverflow.com/questions/19856112/forbiddenattributeserror-in-rails-4
-  # load_and_authorize_resource
+  load_and_authorize_resource
 
   # Export these to the application helper.
   helper_method :sort_column, :sort_direction
@@ -32,13 +28,10 @@ class SubmissionsController < ApplicationController
   #----------------------------------------------------------------------------
   def edit
     @submission = Submission.find(params[:id])
-    authorize! :edit, @submission
   end
 
   #----------------------------------------------------------------------------
   def create
-    authorize! :create, Submission
-
     # Build a new Submission object from the given parameters.
     @submission = Submission.new(submission_params)
     # Try to save it to the DB. If successful, redirect to show, otherwise
@@ -56,7 +49,6 @@ class SubmissionsController < ApplicationController
 
   #----------------------------------------------------------------------------
   def update
-    authorize! :update, @submission
     @submission = Submission.find(params[:id])
 
     if @submission.update(submission_params)
@@ -68,7 +60,6 @@ class SubmissionsController < ApplicationController
 
   #----------------------------------------------------------------------------
   def destroy
-    authorize! :destroy, @submission
     @submission = Submission.find(params[:id])
     @submission.destroy
     redirect_to submissions_path

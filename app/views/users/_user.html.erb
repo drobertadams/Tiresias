@@ -1,5 +1,13 @@
 <p><%= link_to 'Back', root_path %></p>
 
+<p>You are in role <%= @user.role %>.</p>
+
+  <% if can? :update, Submission %>
+  Yes!
+  <% else %>
+  No!
+  <% end %>
+
 <%= form_for @user do |f| %>
 
   <%= render 'error', obj: @user %>
