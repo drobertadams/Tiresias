@@ -10,6 +10,7 @@ class Ability
 
     if user.role? :entry
       can :update, Submission
+      can :update, User
     end
     if user.role? :editor
       can :manage, Submission

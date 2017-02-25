@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  # Automatically add CanCanCan authorization to all actions.
+
+  authorize_resource
+
   # Creates an empty user object.
   def new
       @user = User.new
