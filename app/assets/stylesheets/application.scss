@@ -19,6 +19,11 @@
    font-weight: 300;
  }
 
+ a.navbar-brand  {
+  font-weight: bold;
+  font-size: x-large;
+}
+
  a {
    /* text-decoration: none; */
  }
@@ -59,11 +64,11 @@ th .current {
 }
 
 th .asc {
-  background-image: 'up_arrow.gif';
+  background-image: image_url('up_arrow.gif');
 }
 
 th .desc {
-  background-image: 'down_arrow.gif';
+  background-image: image_url('down_arrow.gif');
 }
 
 #user_nav { float: right; }

@@ -12,6 +12,7 @@ class SubmissionsController < ApplicationController
   def index
     # Join with translator for sorting by translator name.
     @submissions = Submission.joins(:translator).
+      where('approved = 1'). # only return approved submissions
       search(params[:search]).
       order(sort_column + " " + sort_direction).
       paginate(:per_page => 20, :page => params[:page])
