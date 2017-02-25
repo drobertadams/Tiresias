@@ -8,6 +8,8 @@ class Ability
     can :read, :all # everybody can read everything
     can :create, Submission # everybody can create a submission
 
+    can :create, User # FIXME
+
     if user.role? :entry
       can :update, Submission
       can :update, User

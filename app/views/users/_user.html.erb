@@ -19,7 +19,7 @@
 
   <div class="form-group">
   <%= f.label :role, "User Role" %>
-    <% if current_user.role?(:admin) %>
+    <% if can? :create, User %>
       <%= f.collection_select :role, User::ROLES, :to_s, :humanize, {}, {class: 'form-control'} %>
     <% else %>
       <%= f.text_field :role, class: 'form-control', readonly: true %>
