@@ -15,6 +15,4 @@ class User < ApplicationRecord
     ROLES.index(base_role.to_s) <= ROLES.index(role)
   end
 
-
-
 end

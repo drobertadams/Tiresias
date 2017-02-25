@@ -7,9 +7,14 @@ class SubmissionsController < ApplicationController
   #----------------------------------------------------------------------------
   def index
     # Join with translator for sorting by translator name.
-    @submissions = Submission.joins(:translator).
-      where('approved = 1'). # only return approved submissions
-      search(params[:search]).
+    @submissions = Submission.joins(:translator)
+
+    # If the user is anonymous, only show them approved entries.
+    if current_user.nil?
+      @submissions = @submissions.where('approved = 1')
+    end
+    
+    @submissions = @submissions.search(params[:search]).
       order(sort_column + " " + sort_direction).
       paginate(:per_page => 20, :page => params[:page])
   end
@@ -34,6 +39,8 @@ class SubmissionsController < ApplicationController
   def create
     # Build a new Submission object from the given parameters.
     @submission = Submission.new(submission_params)
+    # New submissions default to unapproved.
+    @submission.approved = 0
     # Try to save it to the DB. If successful, redirect to show, otherwise
     # re-render the new page.
     if @submission.save

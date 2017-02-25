@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   # Creates and saves a new user from the given parameters.
   def create
     @user = User.new(user_params)
-    if @user.save
+    if @user.save_without_session_maintenance
+    #if @user.save
       flash[:notice] = "Registration successful."
       redirect_to root_url
     else
