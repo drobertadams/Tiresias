@@ -2,23 +2,25 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # Define abilities for the passed in user here.
 
+    # Anonymous abilities.
     user ||= User.new # guest user (not logged in)
-    can :read, :all # everybody can read everything
+    can :read, :all # everybody can read everything...
+    cannot :manage, User # ...except users
     can :create, Submission # everybody can create a submission
 
-    can :create, User # FIXME
-
     if user.role? :entry
+      # Data Entry abilities.
       can :update, Submission
       can :update, User
     end
     if user.role? :editor
+      # Editor abilities (added to Data Entry abilities)
       can :manage, Submission
     end
     if user.role? :admin
-      can :manage, :all
+      # Admin abilities (added to Editor abilities)
+      can :manage, :all # admins can do everything
     end
 
     #

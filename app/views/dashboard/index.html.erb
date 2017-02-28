@@ -1,10 +1,5 @@
 <h1>Dashboard</h1>
 
-<p>This is your big list of tasks.</p>
-
-<%= link_to "Register", new_user_path, class: "nav-link" %>
-
-<p>This here is just a placeholder.</p>
-<% if can? :create, @author %>
-  <p><%= link_to 'New Author', new_author_path %></p>
+<% if can? :create, User %>
+  <p><%= link_to 'Manage Users', users_path %></p>
 <% end %>
