@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   # Automatically add CanCanCan authorization to all actions.
 
-  authorize_resource
+  load_and_authorize_resource
 
   # Displays all users.
   def index
@@ -26,8 +26,17 @@ class UsersController < ApplicationController
   # Creates and saves a new user from the given parameters.
   def create
     @user = User.new(user_params)
+
+    # Ensure only admins can create admin accounts. CanCanCan currently doesn't
+    # do this cleanly, so we're doing it here manually.
+    if current_user.role?(:editor)
+      if @user.role?(:admin) or @user.role?(:editor)
+        raise CanCan::AccessDenied.new("Permission denied", :create, User)
+        return
+      end
+    end
+
     if @user.save_without_session_maintenance
-    #if @user.save
       flash[:notice] = "Registration successful."
       redirect_to users_path
     else
@@ -38,13 +47,11 @@ class UsersController < ApplicationController
   # Looks up the current user (using helper function)
   def edit
     @user = User.find(params[:id])
-  #  @user = current_user
   end
 
   # Updates the current user.
   def update
     @user = User.find(params[:id])
-    #@user = current_user
     if @user.update_attributes(user_params)
       flash[:notice] = "Successfully updated profile."
       redirect_to users_path

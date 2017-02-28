@@ -6,21 +6,23 @@ class Ability
     # Anonymous abilities.
     user ||= User.new # guest user (not logged in)
     can :read, :all # everybody can read everything...
-    cannot :manage, User # ...except users
+    cannot :read, User # ...except users
     can :create, Submission # everybody can create a submission
 
     if user.role? :entry
       # Data Entry abilities.
       can :update, Submission
-      can :update, User
+      #can :manage, User #, user_id: user.id # update themselves
     end
     if user.role? :editor
       # Editor abilities (added to Data Entry abilities)
       can :manage, Submission
+      can :manage, User, id: user.id
+      can :manage, User, role: "entry"
     end
     if user.role? :admin
       # Admin abilities (added to Editor abilities)
-      can :manage, :all # admins can do everything
+      can :manage, :all
     end
 
     #
