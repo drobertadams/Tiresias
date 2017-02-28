@@ -17,6 +17,7 @@ class Ability
     if user.role? :editor
       # Editor abilities (added to Data Entry abilities)
       can :manage, Submission
+      can :approve, Submission # custom action
       can :manage, User, id: user.id
       can :manage, User, role: "entry"
     end

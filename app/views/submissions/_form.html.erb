@@ -51,7 +51,7 @@
     <% end %>
   </div>
   <div class="form-group">
-    <%=f.label :medium %>
+    <%= f.label :medium %>
     <%= f.collection_select(:medium_id, Medium.all, :id, :name, {:prompt=>true}, {class: 'form-control custom-select', :disabled => disabled}) %>
   </div>
   <div class="form-group">
@@ -61,6 +61,17 @@
     <%= f.label :notes %>
     <%= f.text_area :notes, class: 'form-control', readonly: disabled %>
   </div>
+
+  <% if can? :approve, @submission %>
+    <div class="form-group d-flex p-2 rounded" style="background-color: lightblue">
+      <div class="form-check">
+        <%= f.label :approved, class:'form-check-label' do %>
+          <%= f.check_box :approved, class: 'form-check-input', disabled: disabled %>
+          Approved?
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 
   <%= f.submit style: disabled ? "display:none" : "" %>
 

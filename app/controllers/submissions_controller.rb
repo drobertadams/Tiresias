@@ -13,7 +13,7 @@ class SubmissionsController < ApplicationController
     if current_user.nil?
       @submissions = @submissions.where('approved = 1')
     end
-    
+
     @submissions = @submissions.search(params[:search]).
       order(sort_column + " " + sort_direction).
       paginate(:per_page => 20, :page => params[:page])
@@ -80,7 +80,7 @@ class SubmissionsController < ApplicationController
         :language_id, :medium_id,
         :translator_id, :isbn, :oclc, :edition,
         :is_prose, :is_poetry, :medium_id,
-        :publication_year, :notes)
+        :publication_year, :notes, :approved)
     end
 
     def sort_column
