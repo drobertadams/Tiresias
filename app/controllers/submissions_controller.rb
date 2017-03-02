@@ -10,10 +10,13 @@ class SubmissionsController < ApplicationController
     @submissions = Submission.joins(:translator)
 
     # If the user is anonymous, only show them approved entries.
-    if current_user.nil?
-      @submissions = @submissions.where('approved = 1')
-    end
+    @approved = params[:approved] == "0" ? 0 : 1 # make sure we get numeric parameter
+    @approved = (cannot? :approve, Submission) ? 1 : @approved
 
+    # Grab the submissions.
+    @submissions = @submissions.where('approved = %d' % @approved)
+
+    # Search, order, and paginate.
     @submissions = @submissions.search(params[:search]).
       order(sort_column + " " + sort_direction).
       paginate(:per_page => 20, :page => params[:page])

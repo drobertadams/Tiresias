@@ -1,5 +1,8 @@
-
-<h1>Submissions</h1>
+<% if @approved == 0 %>
+  <h1>Unapproved Submissions</h1>
+<% else %>
+  <h1>Submissions</h1>
+<% end %>
 
 <% if can? :create, Submission %>
 <p><%= link_to 'New Submission', new_submission_path %></p>
@@ -20,7 +23,8 @@
 
 <% if @submissions.blank? %>
   <div class="alert alert-danger" role="alert">
-    There are no submissions containing the term "<%= params[:search] %>".
+    There are no submissions matching that criteria.
+    <%#  params[:search] %>
   </div>
 <% end %>
 

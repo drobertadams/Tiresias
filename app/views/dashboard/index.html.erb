@@ -3,3 +3,7 @@
 <% if can? :create, User %>
   <p><%= link_to 'Manage Users', users_path %></p>
 <% end %>
+
+<% if can? :approve, Submission %>
+  <p><%= link_to 'Unapproved Submissions', :controller=> "submissions", :approved => "0" %></p>
+<% end %>
