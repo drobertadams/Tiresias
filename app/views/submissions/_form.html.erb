@@ -62,6 +62,18 @@
     <%= f.text_area :notes, class: 'form-control', readonly: disabled %>
   </div>
 
+  <% if can? :update, @submission %>
+    <div class="form-group d-flex p-2 rounded" style="background-color: lightblue">
+      <div class="form-check">
+        <%= f.label :needs_approval, class:'form-check-label' do %>
+          <%= f.check_box :needs_approval, class: 'form-check-input', disabled: disabled %>
+          Ready for Approval?
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+
   <% if can? :approve, @submission %>
     <div class="form-group d-flex p-2 rounded" style="background-color: lightblue">
       <div class="form-check">

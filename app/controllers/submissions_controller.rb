@@ -11,10 +11,15 @@ class SubmissionsController < ApplicationController
 
     # If the user is anonymous, only show them approved entries.
     @approved = params[:approved] == "0" ? 0 : 1 # make sure we get numeric parameter
-    @approved = (cannot? :approve, Submission) ? 1 : @approved
+    @approved = (cannot? :update, Submission) ? 1 : @approved
 
     # Grab the submissions.
     @submissions = @submissions.where('approved = %d' % @approved)
+
+    # Possibly limit to those assigned to the current user.
+    if params[:assigned]
+      @submissions = @submissions.where('entry_id = %d' % current_user.id)
+    end
 
     # Search, order, and paginate.
     @submissions = @submissions.search(params[:search]).
@@ -47,8 +52,11 @@ class SubmissionsController < ApplicationController
   def create
     # Build a new Submission object from the given parameters.
     @submission = Submission.new(submission_params)
+
     # New submissions default to unapproved.
     @submission.approved = 0
+    @submission.needs_approval = 0
+
     # Try to save it to the DB. If successful, redirect to show, otherwise
     # re-render the new page.
     if @submission.save
@@ -88,7 +96,7 @@ class SubmissionsController < ApplicationController
         :language_id, :medium_id,
         :translator_id, :isbn, :oclc, :edition,
         :is_prose, :is_poetry, :medium_id,
-        :publication_year, :notes, :approved, :entry_id)
+        :publication_year, :notes, :approved, :entry_id, :needs_approval)
     end
 
     def sort_column

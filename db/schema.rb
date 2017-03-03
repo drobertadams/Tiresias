@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303193757) do
+ActiveRecord::Schema.define(version: 20170303203817) do
 
   create_table "authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170303193757) do
     t.datetime "updated_at",                     null: false
     t.boolean  "approved"
     t.integer  "entry_id"
+    t.boolean  "needs_approval"
     t.index ["author_id"], name: "index_submissions_on_author_id", using: :btree
     t.index ["collection_id"], name: "index_submissions_on_collection_id", using: :btree
     t.index ["entry_id"], name: "index_submissions_on_entry_id", using: :btree

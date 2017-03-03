@@ -19,9 +19,14 @@
       <%= text_field_tag :search, params[:search], placeholder: "Search Submissions", class:'form-control mr-2' %>
       <%= submit_tag "Search", :name => nil, class:'btn btn-primary mr-4' %>
       <%= link_to "Clear Search", { :action => "index", :approved => params[:approved] }, :method => :get, class:'btn btn-primary mr-2' %>
+
       <% if can? :approve, Submission %>
-        <%= link_to 'Unapproved Submissions', { :controller=> "submissions", :approved => "0" }, :method => :get, class:'btn btn-primary' %>
+        <%= link_to 'Unapproved Submissions', { :controller=> "submissions", :approved => "0" }, :method => :get, class:'btn btn-primary mr-2' %>
       <% end %>
+      <% if can? :update, Submission %>
+        <%= link_to 'Assigned Submissions', { :controller=> "submissions", :assigned => "1", :approved => "0" }, :method => :get, class:'btn btn-primary' %>
+      <% end %>
+
     </div>
   <% end %>
 </p>
