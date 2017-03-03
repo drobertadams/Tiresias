@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'dashboard/index'
-
   get 'user_sessions/new'
 
   get 'users/new'

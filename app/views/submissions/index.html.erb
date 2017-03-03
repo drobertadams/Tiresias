@@ -5,33 +5,33 @@
 <% end %>
 
 <% if can? :create, Submission %>
-<p><%= link_to 'New Submission', new_submission_path %></p>
+  <p><%= link_to 'New Submission', new_submission_path %></p>
 <% end %>
 
+<%# --- Display search form --------------------------------------------------%>
 <p>
   <%= form_tag(submissions_path, :method => "get", id: "search-form", class: 'form-inline') do %>
     <%# Add hidden sort and direction to persist these on a search. %>
     <%= hidden_field_tag :direction, params[:direction] %>
     <%= hidden_field_tag :sort, params[:sort] %>
+    <%= hidden_field_tag :approved, params[:approved] %>
     <div class="form-group">
       <%= text_field_tag :search, params[:search], placeholder: "Search Submissions", class:'form-control mr-2' %>
-      <%= submit_tag "Search", :name => nil, class:'btn btn-primary mr-2' %>
-      <%= link_to "Clear Search", { :action => "index" }, :method => :get, class:'btn btn-secondary' %>
+      <%= submit_tag "Search", :name => nil, class:'btn btn-primary mr-4' %>
+      <%= link_to "Clear Search", { :action => "index", :approved => params[:approved] }, :method => :get, class:'btn btn-primary mr-2' %>
+      <% if can? :approve, Submission %>
+        <%= link_to 'Unapproved Submissions', { :controller=> "submissions", :approved => "0" }, :method => :get, class:'btn btn-primary' %>
+      <% end %>
     </div>
   <% end %>
 </p>
 
-<% if @submissions.blank? %>
-  <div class="alert alert-danger" role="alert">
-    There are no submissions matching that criteria.
-    <%#  params[:search] %>
-  </div>
-<% end %>
-
+<%# --- Display pagination controls ------------------------------------------%>
 <div id="submissions">
-  <%= render 'submissions' %>
+  <%= render 'pagination' %>
 </div>
 
+<%# --- Display submissions --------------------------------------------------%>
 <table>
   <tr>
     <%# sortable is defined in application_helper %>

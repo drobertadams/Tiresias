@@ -20,6 +20,11 @@ class SubmissionsController < ApplicationController
     @submissions = @submissions.search(params[:search]).
       order(sort_column + " " + sort_direction).
       paginate(:per_page => 20, :page => params[:page])
+
+    # Display error if we have no submissions.
+    if @submissions.blank?
+      flash[:error] = "There are no submissions matching that criteria."
+    end
   end
 
   #----------------------------------------------------------------------------
@@ -83,7 +88,7 @@ class SubmissionsController < ApplicationController
         :language_id, :medium_id,
         :translator_id, :isbn, :oclc, :edition,
         :is_prose, :is_poetry, :medium_id,
-        :publication_year, :notes, :approved)
+        :publication_year, :notes, :approved, :entry_id)
     end
 
     def sort_column
