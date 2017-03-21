@@ -90,6 +90,12 @@ class SubmissionsController < ApplicationController
   def update
     @submission = Submission.find(params[:id])
 
+    # If the updated entry is being approved, capture the current user doing
+    # the approving.
+    if params[:submission][:approved] == "1"
+      @submission.editor_id = current_user.id
+    end
+
     if @submission.update(submission_params)
       redirect_to @submission
     else
