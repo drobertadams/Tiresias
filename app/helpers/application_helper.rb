@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def human_boolean(boolean)
+      boolean ? 'Y' : 'N'
+  end
+
   def sortable(column, title = nil)
     # Format the title with nice caps.
     title ||= column.titleize
@@ -17,8 +21,8 @@ module ApplicationHelper
 
     # Create a link to the same controller with sort being the column name,
     # and the given sort direction. params.merge will keep any existing
-    # URL parameters. Setting page to nil restarts pagination on page 1.
-    link_to title, params.permit(:search).merge(:sort => column, :direction => direction, :page => nil), {:class => css_class}
+    # "permitted" URL parameters. Setting page to nil restarts pagination on page 1.
+    link_to title, params.permit(:search, :assigned, :approved, :needs_approval).merge(:sort => column, :direction => direction, :page => nil), {:class => css_class}
   end
 
 end

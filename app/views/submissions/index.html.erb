@@ -14,18 +14,31 @@
     <%# Add hidden sort and direction to persist these on a search. %>
     <%= hidden_field_tag :direction, params[:direction] %>
     <%= hidden_field_tag :sort, params[:sort] %>
-    <%= hidden_field_tag :approved, params[:approved] %>
+
     <div class="form-group">
       <%= text_field_tag :search, params[:search], placeholder: "Search Submissions", class:'form-control mr-2' %>
-      <%= submit_tag "Search", :name => nil, class:'btn btn-primary mr-4' %>
-      <%= link_to "Clear Search", { :action => "index", :approved => params[:approved] }, :method => :get, class:'btn btn-primary mr-2' %>
 
-      <% if can? :approve, Submission %>
-        <%= link_to 'Unapproved Submissions', { :controller=> "submissions", :approved => "0" }, :method => :get, class:'btn btn-primary mr-2' %>
-      <% end %>
-      <% if can? :update, Submission %>
-        <%= link_to 'Assigned Submissions', { :controller=> "submissions", :assigned => "1", :approved => "0" }, :method => :get, class:'btn btn-primary' %>
-      <% end %>
+      <div class="form-group">
+        Complete?
+        <%= select_tag(:needs_approval, options_for_select(
+          [ ['', -1 ], ['Yes', 1], ['No', 0] ], params[:needs_approval]),
+          class:'form-control ml-1 mr-2') %>
+      </div>
+
+      <div class="form-group">
+        Approved?
+        <%= select_tag(:approved, options_for_select(
+          [ ['', -1 ], ['Yes', 1], ['No', 0] ], params[:approved]),
+          class:'form-control ml-1 mr-2') %>
+      </div>
+
+      <div class="form-group">
+        Assigned To You?
+        <%= check_box_tag(:assigned, 0, params[:assigned], class:'form-control ml-1 mr-2') %>
+      </div>
+
+      <%= submit_tag "Search", :name => nil, class:'btn btn-primary ml-2 mr-2' %>
+      <%= link_to "Clear Search", { :action => "index" }, :method => :get, class:'btn btn-primary mr-4' %>
 
     </div>
   <% end %>
@@ -43,13 +56,27 @@
     <th><%= sortable "title" %></th>
     <th><%= sortable "translators.name", "Translator"%></th>
     <th><%= sortable "publication_year", "Year" %></th>
+    <% if can? :update, Submission %>
+      <th><%= sortable "needs_approval", "App" %></th>
+    <% end %>
   </tr>
 
   <% @submissions.each do |submission| %>
     <tr>
-      <td><%= truncate(submission.title, length: 75) %></td>
+      <td>
+        <%# Mark entries that needs to be reviewed and approved. %>
+        <% if can? :update, Submission and not submission.needs_approval %>
+          <span style="color:red">*</span>
+        <% end %>
+        <%= truncate(submission.title, length: 75) %></td>
+
       <td><%= Translator.find(submission.translator_id).name %></td>
       <td><%= submission.publication_year %></td>
+
+      <% if can? :update, Submission %>
+        <td><%= human_boolean(submission.needs_approval) %></td>
+      <% end %>
+
       <td><%= link_to 'Show', submission_path(submission) %> :
         <%= link_to 'Edit', edit_submission_path(submission) %> :
         <%= link_to 'Destroy', submission_path(submission),
@@ -60,3 +87,5 @@
   <% end %>
 
 </table>
+
+<span style="color:red">*</span> means the submission is not ready for approval.

@@ -10,11 +10,27 @@ class SubmissionsController < ApplicationController
     @submissions = Submission.joins(:translator)
 
     # If the user is anonymous, only show them approved entries.
-    @approved = params[:approved] == "0" ? 0 : 1 # make sure we get numeric parameter
-    @approved = (cannot? :update, Submission) ? 1 : @approved
+    #@approved = params[:approved] == "0" ? 0 : 1 # make sure we get numeric parameter
+    #@approved = (cannot? :update, Submission) ? 1 : @approved
 
-    # Grab the submissions.
-    @submissions = @submissions.where('approved = %d' % @approved)
+    # FIXME: If the user is anonymous, only show them approved entries.
+    # if cannot? :update, Submission
+    #   @submissions = @submissions.where('approved = 1')
+    # end
+
+    # Possibly limit to those submissions that are approved or not.
+    if params[:approved] == '1'
+      @submissions = @submissions.where('approved = 1')
+    elsif params[:approved] == '0'
+      @submissions = @submissions.where('approved = 0')
+    end
+
+    # Possibly limit to those submissions that need approval.
+    if params[:needs_approval] == '1'
+      @submissions = @submissions.where('needs_approval = 1')
+    elsif params[:needs_approval] == '0'
+      @submissions = @submissions.where('needs_approval = 0')
+    end
 
     # Possibly limit to those assigned to the current user.
     if params[:assigned]
@@ -102,7 +118,7 @@ class SubmissionsController < ApplicationController
     def sort_column
       # See if the sort column is one of the known column names, otherwise
       # default to title.
-      %w[title publication_year translators.name].include?(params[:sort]) ? params[:sort] : "title"
+      %w[title publication_year translators.name needs_approval].include?(params[:sort]) ? params[:sort] : "title"
     end
 
     def sort_direction
