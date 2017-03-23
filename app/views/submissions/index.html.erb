@@ -19,9 +19,9 @@
       <%= text_field_tag :search, params[:search], placeholder: "Search Submissions", class:'form-control mr-2' %>
 
       <div class="form-group">
-        Complete?
-        <%= select_tag(:needs_approval, options_for_select(
-          [ ['', -1 ], ['Yes', 1], ['No', 0] ], params[:needs_approval]),
+        Completed?
+        <%= select_tag(:completed, options_for_select(
+          [ ['', -1 ], ['Yes', 1], ['No', 0] ], params[:completed]),
           class:'form-control ml-1 mr-2') %>
       </div>
 
@@ -56,26 +56,27 @@
     <th><%= sortable "title" %></th>
     <th><%= sortable "translators.name", "Translator"%></th>
     <th><%= sortable "publication_year", "Year" %></th>
-    <% if can? :update, Submission %>
-      <th><%= sortable "needs_approval", "App" %></th>
-    <% end %>
+    <!-- FIXME: <% if can? :update, Submission %>
+      <th><%= sortable "completed", "Completed" %></th>
+    <% end %> -->
   </tr>
 
   <% @submissions.each do |submission| %>
     <tr>
       <td>
-        <%# Mark entries that needs to be reviewed and approved. %>
-        <% if can? :update, Submission and not submission.needs_approval %>
+        <%# Mark entries that not completed and unapproved. %>
+        <% if submission.completed and not submission.approved %>
+          <span style="color:blue">*</span>
+        <% end %>
+        <% if not submission.completed %>
           <span style="color:red">*</span>
         <% end %>
-        <%= truncate(submission.title, length: 75) %></td>
+
+        <%= truncate(submission.title, length: 75) %>
+      </td>
 
       <td><%= Translator.find(submission.translator_id).name %></td>
       <td><%= submission.publication_year %></td>
-
-      <% if can? :update, Submission %>
-        <td><%= human_boolean(submission.needs_approval) %></td>
-      <% end %>
 
       <td><%= link_to 'Show', submission_path(submission) %> :
         <%= link_to 'Edit', edit_submission_path(submission) %> :
@@ -88,4 +89,8 @@
 
 </table>
 
-<span style="color:red">*</span> means the submission is not ready for approval.
+<p>
+  <br/>
+<span style="color:blue">*</span> means the submission is complete but not approved.<br/>
+<span style="color:red">*</span> means the submission is not complete.
+</p>

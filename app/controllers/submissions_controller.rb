@@ -9,7 +9,7 @@ class SubmissionsController < ApplicationController
     # Join with translator for sorting by translator name.
     @submissions = Submission.joins(:translator)
 
-    # If the user is anonymous, only show them approved entries.
+    # FIXME: If the user is anonymous, only show them approved entries.
     #@approved = params[:approved] == "0" ? 0 : 1 # make sure we get numeric parameter
     #@approved = (cannot? :update, Submission) ? 1 : @approved
 
@@ -26,10 +26,10 @@ class SubmissionsController < ApplicationController
     end
 
     # Possibly limit to those submissions that need approval.
-    if params[:needs_approval] == '1'
-      @submissions = @submissions.where('needs_approval = 1')
-    elsif params[:needs_approval] == '0'
-      @submissions = @submissions.where('needs_approval = 0')
+    if params[:completed] == '1'
+      @submissions = @submissions.where('completed = 1')
+    elsif params[:completed] == '0'
+      @submissions = @submissions.where('completed = 0')
     end
 
     # Possibly limit to those assigned to the current user.
@@ -71,7 +71,7 @@ class SubmissionsController < ApplicationController
 
     # New submissions default to unapproved.
     @submission.approved = 0
-    @submission.needs_approval = 0
+    @submission.completed = 0
 
     # Try to save it to the DB. If successful, redirect to show, otherwise
     # re-render the new page.
@@ -118,13 +118,13 @@ class SubmissionsController < ApplicationController
         :language_id, :medium_id,
         :translator_id, :isbn, :oclc, :edition,
         :is_prose, :is_poetry, :medium_id,
-        :publication_year, :notes, :approved, :entry_id, :needs_approval)
+        :publication_year, :notes, :approved, :entry_id, :completed)
     end
 
     def sort_column
       # See if the sort column is one of the known column names, otherwise
       # default to title.
-      %w[title publication_year translators.name needs_approval].include?(params[:sort]) ? params[:sort] : "title"
+      %w[title publication_year translators.name completed].include?(params[:sort]) ? params[:sort] : "title"
     end
 
     def sort_direction
