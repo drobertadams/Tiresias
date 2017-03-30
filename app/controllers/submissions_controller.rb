@@ -9,20 +9,17 @@ class SubmissionsController < ApplicationController
     # Join with translator for sorting by translator name.
     @submissions = Submission.joins(:translator)
 
-    # FIXME: If the user is anonymous, only show them approved entries.
-    #@approved = params[:approved] == "0" ? 0 : 1 # make sure we get numeric parameter
-    #@approved = (cannot? :update, Submission) ? 1 : @approved
-
-    # FIXME: If the user is anonymous, only show them approved entries.
-    # if cannot? :update, Submission
-    #   @submissions = @submissions.where('approved = 1')
-    # end
-
     # Possibly limit to those submissions that are approved or not.
-    if params[:approved] == '1'
+    if cannot? :update, Submission
+      # Anonymous users only see approved things.
       @submissions = @submissions.where('approved = 1')
-    elsif params[:approved] == '0'
-      @submissions = @submissions.where('approved = 0')
+    else
+      # Otherwise, URL allows a choice.
+      if params[:approved] == '1'
+        @submissions = @submissions.where('approved = 1')
+      elsif params[:approved] == '0'
+        @submissions = @submissions.where('approved = 0')
+      end
     end
 
     # Possibly limit to those submissions that need approval.
