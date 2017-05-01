@@ -13,10 +13,12 @@
     <tr>
       <td><%= work.title %></td>
       <td><%= link_to 'Show', work_path(work) %></td>
-      <td><%= link_to 'Edit', edit_work_path(work) %></td>
-      <td><%= link_to 'Destroy', work_path(work),
-             method: :delete,
-             data: { confirm: 'Are you sure?' } %></td>
+      <% if can? :update, Work %>
+        <td><%= link_to 'Edit', edit_work_path(work) %></td>
+        <td><%= link_to 'Destroy', work_path(work),
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
     </tr>
   <% end %>
 

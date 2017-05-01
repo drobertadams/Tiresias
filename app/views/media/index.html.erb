@@ -13,10 +13,12 @@
     <tr>
       <td><%= medium.name %></td>
       <td><%= link_to 'Show', medium_path(medium) %></td>
-      <td><%= link_to 'Edit', edit_medium_path(medium) %></td>
-      <td><%= link_to 'Destroy', medium_path(medium),
-             method: :delete,
-             data: { confirm: 'Are you sure?' } %></td>
+      <% if can? :update, Medium %>
+        <td><%= link_to 'Edit', edit_medium_path(medium) %></td>
+        <td><%= link_to 'Destroy', medium_path(medium),
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
     </tr>
   <% end %>
 

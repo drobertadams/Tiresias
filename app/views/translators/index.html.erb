@@ -15,10 +15,12 @@
     <tr>
       <td><%= translator.name %></td>
       <td><%= link_to 'Show', translator_path(translator) %></td>
-      <td><%= link_to 'Edit', edit_translator_path(translator) %></td>
-      <td><%= link_to 'Destroy', translator_path(translator),
-             method: :delete,
-             data: { confirm: 'Are you sure?' } %></td>
+      <% if can? :update, Translator %>
+        <td><%= link_to 'Edit', edit_translator_path(translator) %></td>
+        <td><%= link_to 'Destroy', translator_path(translator),
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
     </tr>
   <% end %>
 
