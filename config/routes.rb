@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   get 'user_sessions/new'
-
   get 'users/new'
-
   get 'users/edit'
+  get "search/index"
+  get 'submissions/search'
 
   get 'welcome/index'
   root 'welcome#index' # make welcome#index the default root page

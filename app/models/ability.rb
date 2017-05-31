@@ -8,6 +8,7 @@ class Ability
     can :read, :all # everybody can read everything...
     cannot :read, User # ...except users
     can :create, Submission # everybody can create a submission
+    can :search, Submission
 
     if user.role? :entry
       # Data Entry abilities.

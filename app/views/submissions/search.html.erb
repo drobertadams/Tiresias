@@ -1,0 +1,108 @@
+<h1>Search Form</h1>
+<% disabled ||= false # Form is enabled by default %>
+
+
+<%= form_tag(submissions_path, :method => "get", id: "search-form") do %>
+
+<%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+
+<%= submit_tag "Search" %>
+
+<%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+
+  <%= render 'error', obj: @submission %>
+
+  <div class="form-group">
+    <%= label_tag :title %>
+    <%= text_field_tag :title, class: 'form-control', readonly: disabled %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :work %>
+    <%= f.collection_select(:work_id, Work.all, :id, :title, {:prompt=>true}, {class: 'form-control custom-select', :disabled => disabled}) %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :author %>
+    <%= f.collection_select(:author_id, Author.all, :id, :name, {:prompt=>true}, {class: 'form-control custom-select', :disabled => disabled}) %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :language %>
+    <%= f.collection_select(:language_id, Language.all, :id, :name, {:prompt=>true}, {class: 'form-control custom-select', :disabled => disabled}) %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :translator %>
+    <%= f.collection_select(:translator_id, Translator.all, :id, :name, {:prompt=>true}, {class: 'form-control custom-select', :disabled => disabled}) %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :isbn %>
+    <%= text_field_tag :isbn, class: 'form-control', readonly: disabled %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :oclc %>
+    <%= text_field_tag :oclc, class: 'form-control', readonly: disabled %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :edition %>
+    <%= text_field_tag :edition, class: 'form-control', readonly: disabled %>
+  </div>
+  <div class="form-check">
+    <%= label_tag :is_prose, class:'form-check-label' do %>
+      <%= f.check_box :is_prose, class: 'form-check-input', disabled: disabled %>
+      Is Prose?
+    <% end %>
+  </div>
+  <div class="form-check">
+    <%= label_tag :is_poetry, class:'form-check-label' do %>
+      <%= f.check_box :is_poetry, class: 'form-check-input', disabled: disabled %>
+      Is Poetry?
+    <% end %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :medium %>
+    <%= f.collection_select(:medium_id, Medium.all, :id, :name, {:prompt=>true}, {class: 'form-control custom-select', :disabled => disabled}) %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :publication_year %>
+    <%= text_field_tag :publication_year, class: 'form-control', readonly: disabled %></div>
+  <div class="form-group">
+    <%= label_tag :notes %>
+    <%= f.text_area :notes, class: 'form-control', readonly: disabled %>
+  </div>
+
+  <% if can? :update, @submission %>
+    <div class="form-group d-flex p-2 rounded" style="background-color: lightblue">
+      <div class="form-check">
+        <%= label_tag :completed, class:'form-check-label' do %>
+          <%= f.check_box :completed, class: 'form-check-input', disabled: disabled %>
+          Completed?
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if can? :approve, @submission %>
+    <div class="form-group d-flex p-2 rounded" style="background-color: lightblue">
+      <div class="form-check">
+        <%= label_tag :approved, class:'form-check-label' do %>
+          <%= f.check_box :approved, class: 'form-check-input', disabled: disabled %>
+          Approved?
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group d-flex p-2 rounded" style="background-color: lightblue">
+      <div class="form-group">
+        <%= label_tag "Assign To" %>
+        <%= f.collection_select(:entry_id, User.where(role: 'entry'), :id, :email, {:prompt=>true}, {class: 'form-control custom-select', :disabled => disabled}) %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= f.submit style: disabled ? "display:none" : "" %>
+
+<% end %>

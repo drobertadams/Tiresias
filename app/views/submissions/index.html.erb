@@ -8,7 +8,7 @@
   <p><%= link_to 'New Submission', new_submission_path %></p>
 <% end %>
 
-<%# --- Display search form --------------------------------------------------%>
+<%# --- Display search forms --------------------------------------------------%>
 <p>
   <%= form_tag(submissions_path, :method => "get", id: "search-form", class: 'form-inline') do %>
     <%# Add hidden sort and direction to persist these on a search. %>
@@ -16,7 +16,7 @@
     <%= hidden_field_tag :sort, params[:sort] %>
 
     <div class="form-group">
-      <%= text_field_tag :search, params[:search], placeholder: "Search Submissions", class:'form-control mr-2' %>
+      <%= text_field_tag :title, params[:title], placeholder: "Search Title", class:'form-control mr-2' %>
 
       <% if can? :update, Submission %>
         <div class="form-group">
@@ -37,14 +37,20 @@
           Assigned To You?
           <%= check_box_tag(:assigned, 0, params[:assigned], class:'form-control ml-1 mr-2') %>
         </div>
-      <% end %>
+      <% end # if can update %>
 
       <%= submit_tag "Search", :name => nil, class:'btn btn-primary ml-2 mr-2' %>
       <%= link_to "Clear Search", { :action => "index" }, :method => :get, class:'btn btn-primary mr-4' %>
 
+      <%# This button only toggles the display of the advanced search form. %>
+      <button type="button" class="btn btn-primary mr-4" data-toggle="collapse" data-target="#adv_search">Advanced Search</button>
     </div>
-  <% end %>
+  <% end # form_tag %>
+
+  <%= render 'adv_search_form' %>
+
 </p>
+
 
 <%# --- Display pagination controls ------------------------------------------%>
 <div id="submissions">
@@ -92,6 +98,6 @@
 
 <p>
   <br/>
-<span style="color:blue">*</span> means the submission is complete but not approved.<br/>
-<span style="color:red">*</span> means the submission is not complete.
+  <span style="color:blue">*</span> means the submission is complete but not approved.<br/>
+  <span style="color:red">*</span> means the submission is not complete.
 </p>

@@ -1,0 +1,41 @@
+<%# Advanced search form %>
+<div id="adv_search" class="collapse" style="padding: 10px; background-color: lightgrey">
+
+  <%# FIXME: Make some of these dropdowns %>
+
+  <%= form_tag(submissions_path, :method => "get", id: "adv-search-form", class: 'form') do %>
+
+    <%# Add hidden sort and direction to persist these on a search. %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+
+    <div class="form-group">
+      <%= label_tag "Title", nil, class:'mr-2' %>
+      <%= text_field_tag :title, params[:title], class:'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "Translator", nil, class:'mr-2' %>
+      <%= text_field_tag :translator, params[:translator], class:'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "Author", nil, class:'mr-2' %>
+      <%= text_field_tag :author, params[:author], class:'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "Work", nil, class:'mr-2' %>
+      <%= text_field_tag :work, params[:work], class:'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "Start Date", nil, class:'mr-2' %>
+      <%= text_field_tag :start_date, params[:start_date], class:'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "End Date", nil, class:'mr-2' %>
+      <%= text_field_tag :end_date, params[:end_date], class:'form-control' %>
+    </div>
+
+    <%= submit_tag "Search", :name => nil, class:'btn btn-primary ml-2 mr-2' %>
+
+  <% end # advanced search form %>
+
+</div>

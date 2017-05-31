@@ -12,13 +12,16 @@ class Submission < ApplicationRecord
   validates :work_id, presence: true
   validates :title, presence: true, length: { minimum: 5 }
 
-  def self.search(search)
-    if search
-      self.joins(:translator).
-        where("title LIKE ? OR translators.name LIKE ?", "%#{search}%", "%#{search}%")
-    else
-      all
-    end
+  def self.search(title=nil, translator=nil, author=nil, work=nil, start_date=nil, end_date=nil)
+    results = all
+    results = results.where("submissions.title LIKE ?", "%#{title}%") unless title.blank?
+    results = results.where("submissions.publication_year >= ?", "#{start_date}") unless start_date.blank?
+    results = results.where("submissions.publication_year <= ? ", "#{end_date}" ) unless  end_date.blank?
+    results = results.joins(:translator).where("translators.name LIKE ?", "%#{translator}%") unless translator.blank?
+    results = results.joins(:author).where("authors.name LIKE ?", "%#{author}%") unless author.blank?
+    results = results.joins(:work).where("works.title LIKE ?", "%#{work}%") unless work.blank?
+    return results
+
   end
 
 end

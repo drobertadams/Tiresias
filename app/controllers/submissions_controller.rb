@@ -35,7 +35,11 @@ class SubmissionsController < ApplicationController
     end
 
     # Search, order, and paginate.
-    @submissions = @submissions.search(params[:search]).
+    @submissions = @submissions.
+      search( params[:title], params[:translator],
+        params[:author], params[:work],
+        params[:start_date], params[:end_date]
+      ).
       order(sort_column + " " + sort_direction).
       paginate(:per_page => 20, :page => params[:page])
 

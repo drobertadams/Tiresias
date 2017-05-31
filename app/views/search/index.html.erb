@@ -1,0 +1,13 @@
+
+<%= form_tag submissions_path, method: :get do %>
+
+  <%##= render 'error', obj: @submission %>
+
+  <div class="form-group">
+    <%= label_tag "Title" %>
+    <%= text_field_tag :title, '', class: 'form-control' %>
+  </div>
+
+  <%= submit_tag "Search", name: nil %>
+
+<% end %>
