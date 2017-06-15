@@ -1,7 +1,12 @@
 <%# Advanced search form %>
-<div id="adv_search" class="collapse" style="padding: 10px; background-color: lightgrey">
+<div id="adv_search" class="collapse" style="margin-top: 10px; padding: 10px; background-color: lightgrey">
 
-  <%# FIXME: Make some of these dropdowns %>
+  <%# To make some of these dropdowns use the following syntax, although I'm
+    not sure dropdowns are the best option. Having text boxes and using
+    the LIKE query provides some great flexibility.
+
+    collection_select(:submission, :translator_id, Translator.all, :id, :name, {:prompt=>true}, {class: 'form-control custom-select'})
+  %>
 
   <%= form_tag(submissions_path, :method => "get", id: "adv-search-form", class: 'form') do %>
 
@@ -26,11 +31,11 @@
       <%= text_field_tag :work, params[:work], class:'form-control' %>
     </div>
     <div class="form-group">
-      <%= label_tag "Start Date", nil, class:'mr-2' %>
+      <%= label_tag "Start Year", nil, class:'mr-2' %>
       <%= text_field_tag :start_date, params[:start_date], class:'form-control' %>
     </div>
     <div class="form-group">
-      <%= label_tag "End Date", nil, class:'mr-2' %>
+      <%= label_tag "End Year", nil, class:'mr-2' %>
       <%= text_field_tag :end_date, params[:end_date], class:'form-control' %>
     </div>
 
